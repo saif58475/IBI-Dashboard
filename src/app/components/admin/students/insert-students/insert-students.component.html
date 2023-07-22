@@ -1,0 +1,188 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">طالب جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "StudentForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- First Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الاول</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="FirstName"
+                                [tooltip]="fc.FirstName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.FirstName.valid && (fc.FirstName.touched)"
+                                [class.is-invalid]="fc.FirstName.invalid && (fc.FirstName.touched)"
+                                     required
+                                     placeholder="اسم الدولة"/>
+                            </div>
+                            <!-- Second Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الاول</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="SecondName"
+                                [tooltip]="fc.SecondName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.SecondName.valid && (fc.SecondName.touched)"
+                                [class.is-invalid]="fc.SecondName.invalid && (fc.SecondName.touched)"
+                                     required
+                                     placeholder="اسم الدولة"/>
+                            </div>
+                            <!-- Third Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الاول</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="ThirdName"
+                                [tooltip]="fc.ThirdName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.ThirdName.valid && (fc.ThirdName.touched)"
+                                [class.is-invalid]="fc.ThirdName.invalid && (fc.ThirdName.touched)"
+                                     required
+                                     placeholder="اسم الدولة"/>
+                            </div>
+                            <!-- Fourth Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الاول</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="FourthName"
+                                [tooltip]="fc.FourthName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.FourthName.valid && (fc.FourthName.touched)"
+                                [class.is-invalid]="fc.FourthName.invalid && (fc.FourthName.touched)"
+                                     required
+                                     placeholder="اسم الدولة"/>
+                            </div>
+                            <!-- Birth Location  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> محل الميلاد</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="BirthLocation"
+                                [tooltip]="fc.BirthLocation.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.BirthLocation.valid && (fc.BirthLocation.touched)"
+                                [class.is-invalid]="fc.BirthLocation.invalid && (fc.BirthLocation.touched)"
+                                     required
+                                     placeholder="محل الميلاد"/>
+                            </div>
+                            <!-- NationalId  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الرقم القومي</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="NationalId"
+                                [tooltip]="fc.NationalId.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.NationalId.valid && (fc.NationalId.touched)"
+                                [class.is-invalid]="fc.NationalId.invalid && (fc.NationalId.touched)"
+                                     required
+                                     placeholder="الرقم القومي"/>
+                            </div>
+                            <!-- DOB -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> تاريخ الميلاد</label>
+                                <input class="form-control" id="validation01" type="date" formControlName="DOB"
+                                [tooltip]="fc.DOB.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.DOB.valid && (fc.DOB.touched)"
+                                [class.is-invalid]="fc.DOB.invalid && (fc.DOB.touched)"
+                                     required/>
+                            </div>
+                            <!-- GradDate -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> تاريخ التخرج</label>
+                                <input class="form-control" id="validation01" type="date" formControlName="GradDate"
+                                [tooltip]="fc.GradDate.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.GradDate.valid && (fc.GradDate.touched)"
+                                [class.is-invalid]="fc.GradDate.invalid && (fc.GradDate.touched)"
+                                     required/>
+                            </div>
+                            <!-- Country Code  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> نوع الثانوية</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="GradeType"
+                                [tooltip]="fc.GradeType.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.GradeType.valid && (fc.GradeType.touched)"
+                                [class.is-invalid]="fc.GradeType.invalid && (fc.GradeType.touched)"
+                                     required
+                                     placeholder="نوع الثانوية"/>
+                            </div>
+                            <!-- Country Id  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الدولة</label>
+                                <ng-select  [selectOnTab]="true" formControlName="CountryId"
+                                    class="form-control p-0" placeholder="اختر الدولة"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of countries" [value]="item.id">{{item.countryName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- Religion Id  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الديانة</label>
+                                <ng-select  [selectOnTab]="true" formControlName="ReligionId"
+                                    class="form-control p-0" placeholder="اختر الديانة"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of religions" [value]="item.id">{{item.religionName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+
+                            </div>
+                              <!-- to insert GradeImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ GradeImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="GradeImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getfirstLogo"
+                style="display: none" (change)="getLogoUrl($event, 1)" />
+            <button type="button" onclick="document.getElementById('getfirstLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق شهادة التخرج   
+            </button>    
+                        </div>
+                              <!-- to insert BirthImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ BirthImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="BirthImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getsecondLogo"
+                style="display: none" (change)="getLogoUrl($event, 2)" />
+            <button type="button" onclick="document.getElementById('getsecondLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق شهادة الميلاد   
+            </button>    
+                        </div>
+                              <!-- to insert PersonalImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ PersonalImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="PersonalImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getthirdLogo"
+                style="display: none" (change)="getLogoUrl($event, 3)" />
+            <button type="button" onclick="document.getElementById('getthirdLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق صورة شخصية   
+            </button>    
+                        </div>
+                              <!-- to insert MilitralImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ MilitralImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="MilitralImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getfourthLogo"
+                style="display: none" (change)="getLogoUrl($event, 4)" />
+            <button type="button" onclick="document.getElementById('getfourthLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق السبعه جند   
+            </button>    
+                        </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">مسؤول جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "AdminForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- First Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الاول</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="FirstName"
+                                [tooltip]="fc.FirstName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.FirstName.valid && (fc.FirstName.touched)"
+                                [class.is-invalid]="fc.FirstName.invalid && (fc.FirstName.touched)"
+                                     required
+                                     placeholder="الاسم الاول"/>
+                            </div>
+                            <!-- Second Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الثاني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="SecondName"
+                                [tooltip]="fc.SecondName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.SecondName.valid && (fc.SecondName.touched)"
+                                [class.is-invalid]="fc.SecondName.invalid && (fc.SecondName.touched)"
+                                     required
+                                     placeholder="الاسم الثاني"/>
+                            </div>
+                            <!-- email  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاسم الثاني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Email"
+                                [tooltip]="fc.Email.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Email.valid && (fc.Email.touched)"
+                                [class.is-invalid]="fc.Email.invalid && (fc.Email.touched)"
+                                     required
+                                     placeholder="البريد الالكتروني"/>
+                            </div>
+                            <!-- password -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> كلمة المرور</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Password"
+                                [tooltip]="fc.Password.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Password.valid && (fc.Password.touched)"
+                                [class.is-invalid]="fc.Password.invalid && (fc.Password.touched)"
+                                     required
+                                     placeholder="كلمة المرور"/>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
