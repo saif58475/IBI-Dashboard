@@ -38,6 +38,7 @@ import { ViewAdminsComponent } from './admins/view-admins/view-admins.component'
 import { InsertAdminsComponent } from './admins/insert-admins/insert-admins.component';
 import { ViewStudentsComponent } from './students/view-students/view-students.component';
 import { InsertStudentsComponent } from './students/insert-students/insert-students.component';
+import { InsertStudentIBIComponent } from './students/insert-student-ibi/insert-student-ibi.component';
 
 
 
@@ -53,6 +54,7 @@ import { InsertStudentsComponent } from './students/insert-students/insert-stude
     InsertAdminsComponent,
     ViewStudentsComponent,
     InsertStudentsComponent,
+    InsertStudentIBIComponent,
     
   ],
   imports: [

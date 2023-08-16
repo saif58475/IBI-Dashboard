@@ -30,19 +30,20 @@ admins:any [];
   }
   delete(id : number){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'هل انت متأكد ؟',
+      text: "لن يكون لك صلاحية لاعادة المسؤول!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'امسح!',
+      cancelButtonText: 'رجوع',
     }).then((result) => {
       if (result.isConfirmed) {
         this._AdminService.Delete(id).subscribe((res) => {
           Swal.fire({
             icon: "success",
-            title: "Deleted Successfuly",
+            title: "تم المسح بنجاح",
             showConfirmButton: false,
             timer: 1500,
           });

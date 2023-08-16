@@ -13,6 +13,7 @@ import { ViewStudentsComponent } from "./students/view-students/view-students.co
 import { InsertStudentsComponent } from "./students/insert-students/insert-students.component";
 import { ViewAdminsComponent } from "./admins/view-admins/view-admins.component";
 import { InsertAdminsComponent } from "./admins/insert-admins/insert-admins.component";
+import { InsertStudentIBIComponent } from "./students/insert-student-ibi/insert-student-ibi.component";
 
 
 
@@ -51,6 +52,10 @@ const routes: Routes = [
             {
                 path: "InsertStudents",
                 component: InsertStudentsComponent,
+            },
+            {
+                path: "InsertStudentsIBI",
+                component: InsertStudentIBIComponent,
             },
             {
                 path: "ViewAdmin",

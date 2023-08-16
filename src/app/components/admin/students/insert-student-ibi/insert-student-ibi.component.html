@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header" style="padding-bottom: 5px !important">
                     <div >
-                        <h5 class="pb-2">طالب جديد</h5>
+                        <h5 class="pb-2">طالب لاسلكي جديد</h5>
                        <span> يرجى ملئ جميع الخانات </span>
                     </div>
                     <ng-template>
@@ -94,7 +94,7 @@
                                 [class.is-invalid]="fc.GradDate.invalid && (fc.GradDate.touched)"
                                      required/>
                             </div>
-                            <!-- Country Code  -->
+                            <!-- GradeType  -->
                             <div class="col-6 mb-3">
                                 <label for="validation01"><span class="validation-required">*</span> نوع الثانوية</label>
                                 <input class="form-control" id="validation01" type="text" formControlName="GradeType"
@@ -104,15 +104,15 @@
                                      required
                                      placeholder="نوع الثانوية"/>
                             </div>
-                            <!-- Job Description  -->
+                            <!-- JobDescription  -->
                             <div class="col-6 mb-3">
-                                <label for="validation01"><span class="validation-required">*</span> تفاصيل الوظيفة</label>
+                                <label for="validation01"><span class="validation-required">*</span> تفاصيل العمل</label>
                                 <input class="form-control" id="validation01" type="text" formControlName="JobDescription"
                                 [tooltip]="fc.JobDescription.errors?.required ? 'الحقل مطلوب' : null"
                                 [class.is-valid]="fc.JobDescription.valid && (fc.JobDescription.touched)"
                                 [class.is-invalid]="fc.JobDescription.invalid && (fc.JobDescription.touched)"
                                      required
-                                     placeholder="تفاصيل الوظيفة"/>
+                                     placeholder="تفاصيل العمل"/>
                             </div>
                             <!-- Country Id  -->
                             <div class="col-lg-6 col-sm-12  mb-3">
@@ -120,7 +120,7 @@
                                 <ng-select  [selectOnTab]="true" formControlName="CountryId"
                                     class="form-control p-0" placeholder="اختر الدولة"
                                     id="validationCustom05">
-                                    <ng-option *ngFor="let item of countries" [value]="item.id">{{item.countryName}}</ng-option>
+                                    <ng-option *ngFor="let item of countries" [value]="item.id" [disabled]="isDisabled">{{item.countryName}}</ng-option>
                                 </ng-select>
                             </div>
                             <!-- Religion Id  -->
@@ -132,38 +132,91 @@
                                     <ng-option *ngFor="let item of religions" [value]="item.id">{{item.religionName}}</ng-option>
                                 </ng-select>
                             </div>
-                           
-                              <!-- to insert GradeImage  -->
+                            
+                                 <!-- to insert PersonalImage  -->
               <div class="col-lg-6 my-4" style="padding: 1%;">
-                <img  src="{{ GradeImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="GradeImageLogo != null"/>
+                <img  src="{{ PersonalImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="PersonalImageLogo != null"/>
                <input type="file" accept="image/*" #file id="getfirstLogo"
                 style="display: none" (change)="getLogoUrl($event, 1)" />
             <button type="button" onclick="document.getElementById('getfirstLogo').click()"
                 class="btn  d-block"  style="width: 60%;">
-                    ارفاق شهادة التخرج   
+                    ارفاق صورة شخصية   
             </button>    
                         </div>
-                              <!-- to insert BirthImage  -->
+                                 <!-- to insert BirthImage  -->
               <div class="col-lg-6 my-4" style="padding: 1%;">
                 <img  src="{{ BirthImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="BirthImageLogo != null"/>
                <input type="file" accept="image/*" #file id="getsecondLogo"
                 style="display: none" (change)="getLogoUrl($event, 2)" />
             <button type="button" onclick="document.getElementById('getsecondLogo').click()"
                 class="btn  d-block"  style="width: 60%;">
-                    ارفاق شهادة الميلاد   
+                    ارفاق صورة شهادة الميلاد   
             </button>    
                         </div>
-                              <!-- to insert PersonalImage  -->
+                                 <!-- to insert MilitralTwoSoldierImage  -->
               <div class="col-lg-6 my-4" style="padding: 1%;">
-                <img  src="{{ PersonalImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="PersonalImageLogo != null"/>
+                <img  src="{{ MilitralTwoSoldierImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="MilitralTwoSoldierImageLogo != null"/>
                <input type="file" accept="image/*" #file id="getthirdLogo"
                 style="display: none" (change)="getLogoUrl($event, 3)" />
             <button type="button" onclick="document.getElementById('getthirdLogo').click()"
                 class="btn  d-block"  style="width: 60%;">
-                    ارفاق صورة شخصية   
+                    ارفاق نموذج 2 جند   
             </button>    
                         </div>
-                       
+                                 <!-- to insert MilitralSixSoldierImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ MilitralSixSoldierImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="MilitralSixSoldierImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getfourLogo"
+                style="display: none" (change)="getLogoUrl($event, 4)" />
+            <button type="button" onclick="document.getElementById('getfourLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق نموذج 6 جند   
+            </button>    
+                        </div>
+                                 <!-- to insert GradeImage  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ GradeImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="GradeImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="getfifthLogo"
+                style="display: none" (change)="getLogoUrl($event, 5)" />
+            <button type="button" onclick="document.getElementById('getfifthLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق صورة المؤهل   
+            </button>    
+                        </div>
+                                 <!-- to insert AllGradesCertificate  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ AllGradesCertificateLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="AllGradesCertificateLogo != null"/>
+               <input type="file" accept="image/*" #file id="getsixthLogo"
+                style="display: none" (change)="getLogoUrl($event, 6)" />
+            <button type="button" onclick="document.getElementById('getsixthLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق صورة بيان الدرجات   
+            </button>    
+                        </div>
+                                 <!-- to insert StampedNotify  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ StampedNotifyLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="StampedNotifyLogo != null"/>
+               <input type="file" accept="image/*" #file id="getsevenLogo"
+                style="display: none" (change)="getLogoUrl($event, 7)" />
+            <button type="button" onclick="document.getElementById('getsevenLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق البيان المختوم
+            </button>    
+                        </div>
+                                 <!-- to insert TerminationImageLogo  -->
+              <div class="col-lg-6 my-4" style="padding: 1%;">
+                <img  src="{{ TerminationImageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="TerminationImageLogo != null"/>
+               <input type="file" accept="image/*" #file id="geteightLogo"
+                style="display: none" (change)="getLogoUrl($event, 8)" />
+            <button type="button" onclick="document.getElementById('geteightLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                    ارفاق جواب الفصل ان وجد
+            </button>    
+                        </div>
+                           
+                         
+                      
+                         
                         </div>
                         <br>
                         <ng-template #elseBlock>

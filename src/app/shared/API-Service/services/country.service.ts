@@ -15,6 +15,9 @@ export class CountryService {
   Get():Observable<any>{
     return this._HttpClient.get(`${environment.Server_URL}/Country/GetAll`);
    }
+   GetAllRecords(data:any){
+    return this._HttpClient.post(`${environment.Server_URL}/Country/AllRecords`, data);
+   }
   Create(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/Country/Create`, data);
    }

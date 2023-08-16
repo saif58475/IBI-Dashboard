@@ -5,13 +5,21 @@
                 <div class="card-header" style="padding-bottom: 5px !important">
                     <div class="row">
                         <div class="col-6">
-                            <h5 class="pb-2">الطلاب</h5>
+                            <h5 class="pb-2">طلاب معهد IBI</h5>
                            <span>Sub-address</span>
                         </div>
-                        <div class="col-6 header-titles">
+                        <div class="col-3 header-titles">
                             <a routerLink="/content/admin/InsertStudents" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
                                     <span class="m-2">اضافة طالب</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-3 header-titles">
+                            <a routerLink="/content/admin/InsertStudentsIBI" class="d-block">
+                                <button class="btn btn-primary pull-right" type="button">
+                                    <span class="m-2">اضافة طالب لاسلكي</span>
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </a>
@@ -44,16 +52,17 @@
                                         <td class="p-2">{{view.gradeType}}</td>
                                         <td class="p-2">{{view.gradDate}}</td>
                                         <td class="font-style chose">
-                                            <!-- <ng-template #elseBlock>  -->
-                                                <button class="btn  pull-right"  style="color: red; padding: 7px"
-                                                (click)="delete(view.id)" >
-                                                <i class="fa fa-trash"></i>
-                                                   </button>
                                             <button class="btn pull-right"
                                                 style="color: rgba(35, 118, 241, 0.667); padding: 7px"
                                                 (click)="Update(view)">
                                                 <i class="fa fa-pencil"></i>
                                             </button>
+                                            <!-- <ng-template #elseBlock>  -->
+                                                <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                (click)="delete(view.id)" >
+                                                <i class="fa fa-trash"></i>
+                                                   </button>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
@@ -62,6 +71,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row justify-content-center w-100">
+        <div class='d-flex justify-content-center w-50 py-3'>
+          <pagination [boundaryLinks]="true" [totalItems]="totalCount" [itemsPerPage]="pager.pageSize"
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" 
+           (pageChanged)="pageChanged($event)">
+          </pagination>
         </div>
     </div>
 </div>

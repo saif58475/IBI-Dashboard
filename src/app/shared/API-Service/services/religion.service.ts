@@ -15,6 +15,9 @@ export class ReligionService {
   Get():Observable<any>{
     return this._HttpClient.get(`${environment.Server_URL}/Religion/GetAll`);
    }
+  GetAllRecords(data:object):Observable<any>{
+    return this._HttpClient.post(`${environment.Server_URL}/Religion/GetAllRecords`, data);
+   }
   Create(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/Religion/Create`, data);
    }

@@ -3,23 +3,30 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { CountryService } from '../../../../shared/API-Service/services/country.service';
+import { PaginationComponent } from './../../../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-view-country',
   templateUrl: './view-country.component.html',
   styleUrls: ['./view-country.component.css']
 })
-export class ViewCountryComponent implements OnInit {
+export class ViewCountryComponent extends PaginationComponent implements OnInit {
   countries:any[];
   constructor(private _CountryService:CountryService
-             ,private _Router:Router) { }
+             ,private _Router:Router) { super(); }
 
   ngOnInit(): void {
     this.getcountries();
   }
+
+  pageChanged(event: any) {
+    this.pager.pageNumber = event.page;// -1 * pageSize;
+    this.getcountries();
+  }
   getcountries(){
-    this._CountryService.Get().subscribe((res) => {
+    this._CountryService.GetAllRecords(this.pager).subscribe((res : any) => {
       this.countries = res.data;
+      this.totalCount = res.totalCount;
     })
   }
   Update(data) {

@@ -1,7 +1,6 @@
 import { Injector } from "@angular/core";
 import { LayoutService } from "../app/shared/services/layout.service";
-console.log("Simple Injector Example");
-// src/app/shared/services/layout.service
+  // src/app/shared/services/layout.service
 var injector = Injector.create([
   { provide: LayoutService, deps: [] },
 ]);
