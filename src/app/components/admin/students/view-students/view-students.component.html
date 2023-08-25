@@ -4,11 +4,27 @@
             <div class="card">
                 <div class="card-header" style="padding-bottom: 5px !important">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-3">
                             <h5 class="pb-2">طلاب معهد IBI</h5>
                            <span>Sub-address</span>
                         </div>
-                        <div class="col-3 header-titles">
+                        <div class="col-3">             
+                            <label for="validationCustom05"> تصفية الطلاب</label>
+                                <ng-select  [selectOnTab]="true" 
+                                    class="form-control p-0" placeholder="انواع الطلاب"
+                                    id="validationCustom05" [(ngModel)]="studentTypeId" (change)="getFilteredstudents(studentTypeId)">
+                                    <ng-option *ngFor="let item of studentsType" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            
+                        </div>
+                        <div class="col-2 header-titles">
+                            <a  class="d-block" >
+                                <button class="btn bg-success pull-right" (click)="getstudents()" type="button">
+                                    <span class="m-2">جميع الطلاب</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-2 header-titles">
                             <a routerLink="/content/admin/InsertStudents" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
                                     <span class="m-2">اضافة طالب</span>
@@ -16,10 +32,10 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="col-3 header-titles">
+                        <div class="col-2 header-titles">
                             <a routerLink="/content/admin/InsertStudentsIBI" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
-                                    <span class="m-2">اضافة طالب لاسلكي</span>
+                                    <span class="m-2">طالب لاسلكي</span>
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </a>
@@ -39,6 +55,7 @@
                                         <th scope="col">تاريخ الميلاد</th>
                                         <th scope="col">نوع الثانوية</th>
                                         <th scope="col">تاريخ التخرج</th>
+                                        <th scope="col">طالب لاسلكي</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -51,7 +68,21 @@
                                         <td class="p-2">{{view.dob}}</td>
                                         <td class="p-2">{{view.gradeType}}</td>
                                         <td class="p-2">{{view.gradDate}}</td>
+                                        <td class="p-2" [ngSwitch]="view.studentType">
+                                            <i class="fa fa-thumbs-up" style="color: rgb(64, 230, 144); padding: 7px" *ngSwitchCase=1></i>
+                                            <i class="fa fa-thumbs-down" style="color: red; padding: 7px" *ngSwitchCase=2></i>
+                                        </td>
                                         <td class="font-style chose">
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="GetPaymentHistory(view.id)" title="تاريخ حسابات الطالب">
+                                                <i class="fa fa-pencli"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="insertStudentSubCourse(view)" title="تسجيل الطالب على كورس">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
                                             <button class="btn pull-right"
                                                 style="color: rgba(35, 118, 241, 0.667); padding: 7px"
                                                 (click)="Update(view)">

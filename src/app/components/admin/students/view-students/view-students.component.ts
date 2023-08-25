@@ -12,6 +12,12 @@ import { PaginationComponent } from './../../../../shared/components/pagination/
 })
 export class ViewStudentsComponent extends PaginationComponent implements OnInit {
 students:any [];
+filter:boolean = false;
+studentTypeId:number;
+studentsType:object [] = [
+  { name:'طلاب معهد IBI', id:1},
+  { name:'طلاب كورسات', id:2}
+];
   constructor(private _StudentService:StudentService
              ,private _Router:Router
              ,private _DatePipe:DatePipe) { super(); }
@@ -22,9 +28,15 @@ students:any [];
 
   pageChanged(event: any) {
     this.pager.pageNumber = event.page;// -1 * pageSize;
-    this.getstudents();
+    if(this.filter){
+      this.getstudents();
+    }else{
+      this.getFilteredstudents(1);
+    }
   }
   getstudents(){
+    this.filter = false;
+    this.studentTypeId = null;
     this._StudentService.GetAllRecords(this.pager).subscribe((res) => {
       res.data.forEach(element => {
         element.dob = this._DatePipe.transform(element.dob, 'yyyy-MM-dd')
@@ -33,6 +45,17 @@ students:any [];
       this.students = res.data;
       this.totalCount = res.totalCount;
     });
+  }
+  getFilteredstudents(studentTypeId:number){
+    this.filter = true;
+   this._StudentService.GetFilteresRecords(this.pager,studentTypeId).subscribe((res) => {
+    res.data.forEach(element => {
+      element.dob = this._DatePipe.transform(element.dob, 'yyyy-MM-dd')
+      element.gradDate = this._DatePipe.transform(element.gradDate, 'yyyy-MM-dd')
+    });
+    this.students = res.data;
+    this.totalCount = res.totalCount;
+   })
   }
   Update(data) {
     switch(data.studentType){
@@ -48,7 +71,46 @@ students:any [];
     }
     this._StudentService.Data.next(data);
   }
-
+  GetPaymentHistory(studentId:number){
+    this._Router.navigate([`/content/admin/ViewPaymentHistory/${studentId}`]);
+  }
+async insertStudentSubCourse(data:any){
+ switch(data.studentType){
+ case 1:
+  await  Swal.fire({
+    title: 'هل تريد تفعيل الطالب على معهد لاسلكي ام الكورسات الخاصة',
+    input: 'select',
+    inputOptions: {
+      'خيارات خاصة بكورسات الطالب': {
+        IBI: 'معهد لاسلكي',
+        Course: 'كورسات المعهد الاخرى',
+      },
+    },
+    inputPlaceholder: 'اختر نوع الكورس',
+    showCancelButton: true,
+    confirmButtonText: 'استمر',
+    cancelButtonText:'الغاء',
+    inputValidator: (value) => {
+      return new Promise((resolve) => {
+        if (value === 'IBI') {
+          this._Router.navigate([`/content/admin/InsertIBIStudentSubCourse/${data.id}`]);
+          document.getElementsByClassName('swal2-container')[0].remove();
+        } else if(value === 'Course'){
+          this._Router.navigate([`/content/admin/InsertStudentSubCourse/${data.id}`]);
+          document.getElementsByClassName('swal2-container')[0].remove();
+        }
+      })
+    }
+});
+break;
+ case 2:
+  this._Router.navigate([`/content/admin/InsertStudentSubCourse/${data.id}`]);
+  break;
+  default:
+    alert('You Have to update this student because it has missed data');
+    break;
+ }
+}
   delete(id : number){
     Swal.fire({
       title: 'هل انت متأكد من المسح?',

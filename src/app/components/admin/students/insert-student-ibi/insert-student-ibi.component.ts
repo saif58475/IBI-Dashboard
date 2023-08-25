@@ -88,6 +88,9 @@ religions:any;
    if(data.stampedNotify){
     this.StampedNotifyLogo = this.img + data.stampedNotify;
    }
+   if(data.terminationImage){
+    this.TerminationImageLogo = this.img + data.terminationImage
+   }
   }
   initiate(data?:any){
     this.StudentForm = this._FormBuilder.group({
@@ -95,14 +98,17 @@ religions:any;
       SecondName: [data?.secondName || '', Validators.required],
       ThirdName: [data?.thirdName || '', Validators.required],
       FourthName: [data?.fourthName || '', Validators.required],
+      PhoneNumber: [data?.phoneNumber || '', Validators.required],
+      SecondPhoneNumber: [data?.secondPhoneNumber || '', Validators.required],
+      LocationDetails: [data?.locationDetails || '', Validators.required],
       BirthLocation: [data?.birthLocation || '', Validators.required],
-      JobDescription: [data?.jobDescription || '', Validators.required],
       DOB: [this._DatePipe.transform(data?.dob, 'yyyy-MM-dd') || '', Validators.required],
       NationalId: [data?.nationalId || '', Validators.required],
       GradDate: [this._DatePipe.transform(data?.gradDate, 'yyyy-MM-dd') || '', Validators.required],
       GradeType: [data?.gradeType || '', Validators.required],
       CountryId: [data?.countryId || 1, Validators.required],
       ReligionId: [data?.religionId || '', Validators.required],
+      JobDescription: [data?.jobDescription || '', Validators.required],      
       StudentType: [data?.studentType || 1, Validators.required],
     });
   }
@@ -193,6 +199,9 @@ religions:any;
     this.StudentFormData.append('SecondName', this.StudentForm.value.SecondName);
     this.StudentFormData.append('ThirdName', this.StudentForm.value.ThirdName);
     this.StudentFormData.append('FourthName', this.StudentForm.value.FourthName);
+    this.StudentFormData.append('PhoneNumber', this.StudentForm.value.PhoneNumber);
+    this.StudentFormData.append('LocationDetails', this.StudentForm.value.LocationDetails);
+    this.StudentFormData.append('SecondPhoneNumber', this.StudentForm.value.SecondPhoneNumber);
     this.StudentFormData.append('BirthLocation', this.StudentForm.value.BirthLocation);
     this.StudentFormData.append('DOB', this.StudentForm.value.DOB);
     this.StudentFormData.append('JobDescription', this.StudentForm.value.JobDescription);

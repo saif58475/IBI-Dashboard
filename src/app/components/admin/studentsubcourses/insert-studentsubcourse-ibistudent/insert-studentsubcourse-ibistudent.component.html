@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">تسجيل طالب لاسكلي على سنة دراسية</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "IBIStudentSubCourseForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                             <!-- Course Id  -->
+                             <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورس</label>
+                                <ng-select  [selectOnTab]="true" (change)="onSelectCourse($event)" 
+                                    class="form-control p-0" placeholder="اختر الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let option of courses" [value]="option.id">{{ option.name }}</ng-option>
+                                </ng-select>
+                            </div>
+                             <!-- Sub Course Id  -->
+                             <!-- (change)="onSelectSubCourse($event)" -->
+                             <div class="col-lg-6 col-sm-12  mb-3" *ngIf="subcourses != null">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر تقسيمة الكورس</label>
+                                <ng-select  [selectOnTab]="true"  formControlName="subCourseId"
+                                    class="form-control p-0" placeholder="اختر تقسيمة الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let option of subcourses" [value]="option.id">{{ option.name }}</ng-option>
+                                </ng-select>
+                            </div>
+                             <!-- SubCourse Price  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> سعر تقسيمة الكورس</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="subCoursePrice" 
+                                [tooltip]="fc.subCoursePrice.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.subCoursePrice.valid && (fc.subCoursePrice.touched)"
+                                [class.is-invalid]="fc.subCoursePrice.invalid && (fc.subCoursePrice.touched)"
+                                     required
+                                     placeholder="سعر تقسيمة الكورس"/>
+                            </div>
+                             <!-- ibi Student Document Price  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> سعر اثبات القيد</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="ibiStudentDocumentPrice"
+                                [tooltip]="fc.ibiStudentDocumentPrice.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.ibiStudentDocumentPrice.valid && (fc.ibiStudentDocumentPrice.touched)"
+                                [class.is-invalid]="fc.ibiStudentDocumentPrice.invalid && (fc.ibiStudentDocumentPrice.touched)"
+                                     required
+                                     placeholder="سعر اثبات القيد"/>
+                            </div>
+                             <!-- registration File Price  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> سعر فتح ملف</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="registrationFilePrice"
+                                [tooltip]="fc.registrationFilePrice.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.registrationFilePrice.valid && (fc.registrationFilePrice.touched)"
+                                [class.is-invalid]="fc.registrationFilePrice.invalid && (fc.registrationFilePrice.touched)"
+                                     required
+                                     placeholder="سعر فتح الملف"/>
+                            </div>
+                             <!-- deposit  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> المقدم المدفوع</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="deposit"
+                                [tooltip]="fc.deposit.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.deposit.valid && (fc.deposit.touched)"
+                                [class.is-invalid]="fc.deposit.invalid && (fc.deposit.touched)"
+                                     required
+                                     placeholder="المقدم المدفوع"/>
+                            </div>
+                             <!-- totalprice  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اجمالي السعر المطلوب</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="totalPrice"
+                                [tooltip]="fc.totalPrice.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.totalPrice.valid && (fc.totalPrice.touched)"
+                                [class.is-invalid]="fc.totalPrice.invalid && (fc.totalPrice.touched)"
+                                     required
+                                     placeholder="اجمالي السعر المطلوب"/>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

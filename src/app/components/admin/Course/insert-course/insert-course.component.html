@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">كورس جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "CourseForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Name"
+                                [tooltip]="fc.Name.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Name.valid && (fc.Name.touched)"
+                                [class.is-invalid]="fc.Name.invalid && (fc.Name.touched)"
+                                     required
+                                     placeholder="اسم الكورس"/>
+                            </div>
+                            <!-- Code  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> كود الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Code"
+                                [tooltip]="fc.Code.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Code.valid && (fc.Code.touched)"
+                                [class.is-invalid]="fc.Code.invalid && (fc.Code.touched)"
+                                     required
+                                     placeholder="كود الكورس"/>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

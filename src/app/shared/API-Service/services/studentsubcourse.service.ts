@@ -6,24 +6,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ReligionService {
+export class StudentSubCourseService {
 
   public Data = new BehaviorSubject(null);
   constructor(private _HttpClient:HttpClient) { }
 
   Get():Observable<any>{
-    return this._HttpClient.get(`${environment.Server_URL}/Religion/GetAll`);
+    return this._HttpClient.get(`${environment.Server_URL}/StudentSubCourse/GetAll`);
    }
   GetAllRecords(data:object):Observable<any>{
-    return this._HttpClient.post(`${environment.Server_URL}/Religion/GetAllRecords`, data);
+    return this._HttpClient.post(`${environment.Server_URL}/StudentSubCourse/GetAllRecords`, data);
    }
   Create(data:object):Observable<any>{
-    return this._HttpClient.post(`${environment.Server_URL}/Religion/Create`, data);
+    return this._HttpClient.post(`${environment.Server_URL}/StudentSubCourse/Create`, data);
    }
   Update(data:object):Observable<any>{
-    return this._HttpClient.put(`${environment.Server_URL}/Religion/Update`, data);
+    return this._HttpClient.put(`${environment.Server_URL}/StudentSubCourse/Update`, data);
    }
   Delete(id:number):Observable<any>{
-    return this._HttpClient.delete(`${environment.Server_URL}/Religion/Delete?id=${id}`);
-   }
-}
+    return this._HttpClient.delete(`${environment.Server_URL}/StudentSubCourse/Delete?id=${id}`);
+   }}

@@ -138,6 +138,45 @@ export class NavService implements OnDestroy {
       ],
     },
     {
+      title: "الكورسات",
+      icon: "activity",
+      type: "sub",
+      badgeType: "success",
+      children: [
+        {
+          path: "admin/ViewCourse",
+          title: "ادارة الكورسات",
+          type: "link",
+        },
+      ],
+    },
+    {
+      title: "تقسيم الكورسات",
+      icon: "activity",
+      type: "sub",
+      badgeType: "success",
+      children: [
+        {
+          path: "admin/ViewSubCourse",
+          title: "ادارة تقسيم الكورسات",
+          type: "link",
+        },
+      ],
+    },
+    // {
+    //   title: "محتوى الكورسات",
+    //   icon: "activity",
+    //   type: "sub",
+    //   badgeType: "success",
+    //   children: [
+    //     {
+    //       path: "admin/ViewContentLevel",
+    //       title: "ادارة محتوى الكورسات",
+    //       type: "link",
+    //     },
+    //   ],
+    // },
+    {
       title: "المستخدمين",
       icon: "activity",
       type: "sub",

@@ -26,10 +26,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 // cookie 
 import { CookieService } from 'ngx-cookie-service'
-
-
 import { DxReportViewerModule } from 'devexpress-reporting-angular';
-import { ViewProductComponent } from './product/view-product/view-product.component';
 import { ViewCountryComponent } from './Country/view-country/view-country.component';
 import { InsertCountryComponent } from './Country/insert-country/insert-country.component';
 import { ViewReligionComponent } from './Religion/view-religion/view-religion.component';
@@ -39,13 +36,23 @@ import { InsertAdminsComponent } from './admins/insert-admins/insert-admins.comp
 import { ViewStudentsComponent } from './students/view-students/view-students.component';
 import { InsertStudentsComponent } from './students/insert-students/insert-students.component';
 import { InsertStudentIBIComponent } from './students/insert-student-ibi/insert-student-ibi.component';
+import { ViewCourseComponent } from './Course/view-course/view-course.component';
+import { InsertCourseComponent } from './Course/insert-course/insert-course.component';
+import { ViewSubcourseComponent } from './SubCourse/view-subcourse/view-subcourse.component';
+import { InsertSubcourseComponent } from './SubCourse/insert-subcourse/insert-subcourse.component';
+import { ViewContentlevelComponent } from './ContentLevel/view-contentlevel/view-contentlevel.component';
+import { InsertContentlevelComponent } from './ContentLevel/insert-contentlevel/insert-contentlevel.component';
+import { InsertStudentsubcourseIBIStudentComponent } from './studentsubcourses/insert-studentsubcourse-ibistudent/insert-studentsubcourse-ibistudent.component';
+import { InsertStudentcoursesComponent } from './studentsubcourses/insert-studentcourses/insert-studentcourses.component';
+import { InsertStudentsubcourseStudentComponent } from './studentsubcourses/insert-studentsubcourse-student/insert-studentsubcourse-student.component';
+import { ViewStudentPaymenthistoryComponent } from './paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component';
+import { InsertStudentPaymenthistoryComponent } from './paymentHistory/insert-student-paymenthistory/insert-student-paymenthistory.component';
 
 
 
 
  @NgModule({
   declarations: [
-    ViewProductComponent,
     ViewCountryComponent,
     InsertCountryComponent,
     ViewReligionComponent,
@@ -55,6 +62,17 @@ import { InsertStudentIBIComponent } from './students/insert-student-ibi/insert-
     ViewStudentsComponent,
     InsertStudentsComponent,
     InsertStudentIBIComponent,
+    ViewCourseComponent,
+    InsertCourseComponent,
+    ViewSubcourseComponent,
+    InsertSubcourseComponent,
+    ViewContentlevelComponent,
+    InsertContentlevelComponent,
+    InsertStudentsubcourseIBIStudentComponent,
+    InsertStudentcoursesComponent,
+    InsertStudentsubcourseStudentComponent,
+    ViewStudentPaymenthistoryComponent,
+    InsertStudentPaymenthistoryComponent,
     
   ],
   imports: [

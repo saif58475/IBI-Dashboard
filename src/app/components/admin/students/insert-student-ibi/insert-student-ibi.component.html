@@ -56,6 +56,36 @@
                                      required
                                      placeholder="الاسم الرابع"/>
                             </div>
+                            <!-- Phone NUmber  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> رقم الهاتف</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="PhoneNumber"
+                                [tooltip]="fc.PhoneNumber.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.PhoneNumber.valid && (fc.PhoneNumber.touched)"
+                                [class.is-invalid]="fc.PhoneNumber.invalid && (fc.PhoneNumber.touched)"
+                                     required
+                                     placeholder="رقم الهاتف"/>
+                            </div>
+                            <!-- Second Phone Number  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> رقم هاتف ثاني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="SecondPhoneNumber"
+                                [tooltip]="fc.SecondPhoneNumber.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.SecondPhoneNumber.valid && (fc.SecondPhoneNumber.touched)"
+                                [class.is-invalid]="fc.SecondPhoneNumber.invalid && (fc.SecondPhoneNumber.touched)"
+                                     required
+                                     placeholder="رقم هاتف ثاني"/>
+                            </div>
+                            <!-- Location Details  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> محل السكن</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="LocationDetails"
+                                [tooltip]="fc.LocationDetails.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.LocationDetails.valid && (fc.LocationDetails.touched)"
+                                [class.is-invalid]="fc.LocationDetails.invalid && (fc.LocationDetails.touched)"
+                                     required
+                                     placeholder="محل السكن"/>
+                            </div>
                             <!-- Birth Location  -->
                             <div class="col-6 mb-3">
                                 <label for="validation01"><span class="validation-required">*</span> محل الميلاد</label>

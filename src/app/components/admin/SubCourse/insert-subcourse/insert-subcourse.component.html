@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">تقسيمة كورس جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "SubCourseForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Name"
+                                [tooltip]="fc.Name.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Name.valid && (fc.Name.touched)"
+                                [class.is-invalid]="fc.Name.invalid && (fc.Name.touched)"
+                                     required
+                                     placeholder="اسم الكورس"/>
+                            </div>
+                            <!-- Code  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> كود الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Code"
+                                [tooltip]="fc.Code.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Code.valid && (fc.Code.touched)"
+                                [class.is-invalid]="fc.Code.invalid && (fc.Code.touched)"
+                                     required
+                                     placeholder="كود الكورس"/>
+                            </div>
+                            <!-- CourseId  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورس</label>
+                                <ng-select  [selectOnTab]="true" formControlName="CourseId"
+                                    class="form-control p-0" placeholder="اختر الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of courses" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- Group Amount  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"> سعر المجموعة</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="GroupAmount"
+                                [class.is-valid]="fc.GroupAmount.valid && (fc.GroupAmount.touched)"
+                                [class.is-invalid]="fc.GroupAmount.invalid && (fc.GroupAmount.touched)"
+                                     placeholder="سعر المجموعه"/>
+                            </div>
+                            <!-- Private One Amount  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"> سعر Private One</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="PrivateOneAmount"
+                                [class.is-valid]="fc.PrivateOneAmount.valid && (fc.PrivateOneAmount.touched)"
+                                [class.is-invalid]="fc.PrivateOneAmount.invalid && (fc.PrivateOneAmount.touched)"
+                                     placeholder="سعر Private One"/>
+                            </div>
+                            <!-- Private Two Amount  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"> سعر Private Two</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="PrivateTwoAmount"
+                                [class.is-valid]="fc.PrivateTwoAmount.valid && (fc.PrivateTwoAmount.touched)"
+                                [class.is-invalid]="fc.PrivateTwoAmount.invalid && (fc.PrivateTwoAmount.touched)"
+                                     placeholder="سعر Private Two"/>
+                            </div>
+                            <!-- Book Amount  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"> سعر الكتاب</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="BookAmount"
+                                [class.is-valid]="fc.BookAmount.valid && (fc.BookAmount.touched)"
+                                [class.is-invalid]="fc.BookAmount.invalid && (fc.BookAmount.touched)"
+                                     placeholder="سعر الكتاب"/>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

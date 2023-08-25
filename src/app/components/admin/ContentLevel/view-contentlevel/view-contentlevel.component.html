@@ -5,13 +5,17 @@
                 <div class="card-header" style="padding-bottom: 5px !important">
                     <div class="row">
                         <div class="col-6">
-                            <h5 class="pb-2">الديانات</h5>
+                            <h5 class="pb-2">محتوى الكورسات</h5>
                            <span>Sub-address</span>
                         </div>
+                        <!-- <div class="col-6">
+                            <input class="form-control form-control-light" type="text" 
+                            placeholder="ابحث باي اسم او سعر" [(ngModel)]="filterstring">
+                          </div> -->
                         <div class="col-6 header-titles">
-                            <a routerLink="/content/admin/InsertReligion" class="d-block">
+                            <a routerLink="/content/admin/InsertContentLevel" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
-                                    <span class="m-2">اضافة ديانة</span>
+                                    <span class="m-2">اضافة محتوى كورس</span>
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </a>
@@ -25,20 +29,29 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">اسم الديانة</th>
+                                        <th scope="col">اسم المحتوى</th>
+                                        <th scope="col">كود المحتوى</th>
+                                        <th scope="col">اسم تقسيمة الكورس</th>
+                                        <th scope="col">كود تقسيمة الكورس</th>
+                                        <th scope="col">اسم الكورس</th>
+                                        <th scope="col">كود الكورس</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let view of religions;let x = index" class=" ">
+                                    <tr *ngFor="let view of contentlevel;let x = index">
                                         <td scope="row" class="p-2">{{x+1}}</td>
-                                        <td class="p-2">{{view.religionName}}</td>
+                                        <td class="p-2">{{view.name}}</td>
+                                        <td class="p-2">{{view.code}}</td>
+                                        <td class="p-2">{{view.subcourse.name}}</td>
+                                        <td class="p-2">{{view.subcourse.code}}</td>
+                                        <td class="p-2">{{view.subcourse.course.name}}</td>
+                                        <td class="p-2">{{view.subcourse.course.code}}</td>
                                         <td class="font-style chose">
-                                            <!-- <ng-template #elseBlock>  -->
-                                                <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                 <button class="btn  pull-right"  style="color: red; padding: 7px"
                                                 (click)="delete(view.id)" >
                                                 <i class="fa fa-trash"></i>
-                                                   </button>
+                                                   </button> 
                                             <button class="btn pull-right"
                                                 style="color: rgba(35, 118, 241, 0.667); padding: 7px"
                                                 (click)="Update(view)">

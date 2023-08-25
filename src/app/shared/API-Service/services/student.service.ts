@@ -18,7 +18,9 @@ export class StudentService {
   GetAllRecords(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/Student/GetAllRecords`, data);
    }
-   
+  GetFilteresRecords(data:object , studentTypeId:number):Observable<any>{
+    return this._HttpClient.post(`${environment.Server_URL}/Student/GetFilteredRecords?studentTypeId=${studentTypeId}`, data);
+  }
   Create(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/Student/Create`, data);
    }

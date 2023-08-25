@@ -4,7 +4,6 @@ import { RouterModule, Routes } from "@angular/router";
 
 
 
-import { ViewProductComponent } from './product/view-product/view-product.component';
 import { ViewCountryComponent } from "./Country/view-country/view-country.component";
 import { InsertCountryComponent } from "./Country/insert-country/insert-country.component";
 import { ViewReligionComponent } from "./Religion/view-religion/view-religion.component";
@@ -14,6 +13,15 @@ import { InsertStudentsComponent } from "./students/insert-students/insert-stude
 import { ViewAdminsComponent } from "./admins/view-admins/view-admins.component";
 import { InsertAdminsComponent } from "./admins/insert-admins/insert-admins.component";
 import { InsertStudentIBIComponent } from "./students/insert-student-ibi/insert-student-ibi.component";
+import { ViewCourseComponent } from "./Course/view-course/view-course.component";
+import { InsertCourseComponent } from "./Course/insert-course/insert-course.component";
+import { ViewSubcourseComponent } from "./SubCourse/view-subcourse/view-subcourse.component";
+import { InsertSubcourseComponent } from "./SubCourse/insert-subcourse/insert-subcourse.component";
+import { ViewContentlevelComponent } from "./ContentLevel/view-contentlevel/view-contentlevel.component";
+import { InsertContentlevelComponent } from "./ContentLevel/insert-contentlevel/insert-contentlevel.component";
+import { InsertStudentsubcourseIBIStudentComponent } from "./studentsubcourses/insert-studentsubcourse-ibistudent/insert-studentsubcourse-ibistudent.component";
+import { InsertStudentsubcourseStudentComponent } from "./studentsubcourses/insert-studentsubcourse-student/insert-studentsubcourse-student.component";
+import { ViewStudentPaymenthistoryComponent } from "./paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component";
 
 
 
@@ -23,12 +31,6 @@ const routes: Routes = [
     {
         path: "",
         children: [
-            
-
-            {
-                path: "ViewProduct",
-                component: ViewProductComponent,
-            },
             {
                 path: "ViewCountry",
                 component: ViewCountryComponent,
@@ -65,9 +67,50 @@ const routes: Routes = [
                 path: "InsertAdmin",
                 component: InsertAdminsComponent,
             },
-           
-            
-           
+            {
+                path: "ViewCourse",
+                component: ViewCourseComponent,
+            },
+            {
+                path: "InsertCourse",
+                component: InsertCourseComponent,
+            },
+            {
+                path: "ViewSubCourse",
+                component: ViewSubcourseComponent,
+            },
+            {
+                path: "ViewSubCourse/:id",
+                component: ViewSubcourseComponent,
+            },
+            {
+                path: "InsertSubCourse",
+                component: InsertSubcourseComponent,
+            },
+            {
+                path: "ViewContentLevel",
+                component: ViewContentlevelComponent,
+            },
+            {
+                path: "ViewContentLevel/:id",
+                component: ViewContentlevelComponent,
+            },
+            {
+                path: "InsertContentLevel",
+                component: InsertContentlevelComponent,
+            },
+            {
+                path: "InsertIBIStudentSubCourse/:studentId",
+                component: InsertStudentsubcourseIBIStudentComponent
+            },
+            {
+                path: "InsertStudentSubCourse/:studentId",
+                component: InsertStudentsubcourseStudentComponent
+            },
+            {
+                path: "ViewPaymentHistory/:studentId",
+                component: ViewStudentPaymenthistoryComponent
+            },
 ],
     },
 ];

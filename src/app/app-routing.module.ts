@@ -6,7 +6,6 @@ import { content } from "./shared/routes/routes";
 // Guard
 import { IsLoginGuard } from "./shared/guard/is-login.guard";
 import { IsNotLoginGuard } from "./shared/guard/is-not-login.guard";
-import { ViewProductComponent } from "./components/admin/product/view-product/view-product.component";
 
 // login
 import { LoginComponent } from "./shared/Models/login/login.component";

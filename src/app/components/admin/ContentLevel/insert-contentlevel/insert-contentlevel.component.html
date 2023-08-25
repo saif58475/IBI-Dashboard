@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">محتوى كورس جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "ContentLevelForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم محتوى الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Name"
+                                [tooltip]="fc.Name.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Name.valid && (fc.Name.touched)"
+                                [class.is-invalid]="fc.Name.invalid && (fc.Name.touched)"
+                                     required
+                                     placeholder="اسم الكورس"/>
+                            </div>
+                            <!-- Code  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> كود محتوى الكورس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="Code"
+                                [tooltip]="fc.Code.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.Code.valid && (fc.Code.touched)"
+                                [class.is-invalid]="fc.Code.invalid && (fc.Code.touched)"
+                                     required
+                                     placeholder="كود الكورس"/>
+                            </div>
+                             <!-- Course Id  -->
+                             <div class="col-lg-6 col-sm-12  mb-3" *ngIf="SelectedCourse">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورس</label>
+                                <ng-select  [selectOnTab]="true" (change)="onOptionSelected($event)" 
+                                    class="form-control p-0" placeholder="اختر الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let option of courses" [value]="option.id">{{ option.name }}</ng-option>
+                                </ng-select>
+                            </div>
+                             <!-- SubCourse Id  -->
+                             <div class="col-lg-6 col-sm-12  mb-3" *ngIf="SubCourseView">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر تقسيمة الكورس</label>
+                                <ng-select  [selectOnTab]="true" formControlName="SubcourseId"
+                                    class="form-control p-0" placeholder="اختر نقسيمة الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of subcourses" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

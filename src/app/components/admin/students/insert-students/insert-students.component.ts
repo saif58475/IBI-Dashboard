@@ -56,12 +56,9 @@ PersonalImageLogo:string;
       SecondName: [data?.secondName || '', Validators.required],
       ThirdName: [data?.thirdName || '', Validators.required],
       FourthName: [data?.fourthName || '', Validators.required],
-      BirthLocation: [data?.birthLocation || '', Validators.required],
-      JobDescription: [data?.jobDescription || '', Validators.required],
-      DOB: [this._DatePipe.transform(data?.dob, 'yyyy-MM-dd') || '', Validators.required],
-      NationalId: [data?.nationalId || '', Validators.required],
-      GradDate: [this._DatePipe.transform(data?.gradDate, 'yyyy-MM-dd') || '', Validators.required],
-      GradeType: [data?.gradeType || '', Validators.required],
+      PhoneNumber: [data?.phoneNumber || '', Validators.required],
+      SecondPhoneNumber: [data?.secondphoneNumber || ''],
+      LocationDetails: [data?.locationDetails || '', Validators.required],
       CountryId: [data?.countryId || '', Validators.required],
       ReligionId: [data?.religionId || '', Validators.required],
       StudentType: [data?.studentType || 2, Validators.required],
@@ -79,57 +76,51 @@ PersonalImageLogo:string;
    });
   }
   // imgFile
-  getLogoUrl(event: any, picnum:number) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      switch(picnum){
-      case 1:
-        this.GradeImage = event.target.files[0];
-        reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.GradeImageLogo = reader.result as string;
-      };
-        break;
-      case 2:
-        this.BirthImage = event.target.files[0];
-        reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.BirthImageLogo = reader.result as string;
-      };
-        break;
-      case 3:
-        this.PersonalImage = event.target.files[0];
-        reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.PersonalImageLogo = reader.result as string;
-      };
-        break;
-        default:
-          alert('nothing selected')
-          break;
-      }
+  // getLogoUrl(event: any, picnum:number) {
+  //   const reader = new FileReader();
+  //   if (event.target.files && event.target.files.length) {
+  //     const [file] = event.target.files;
+  //     switch(picnum){
+  //     case 1:
+  //       this.GradeImage = event.target.files[0];
+  //       reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.GradeImageLogo = reader.result as string;
+  //     };
+  //       break;
+  //     case 2:
+  //       this.BirthImage = event.target.files[0];
+  //       reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.BirthImageLogo = reader.result as string;
+  //     };
+  //       break;
+  //     case 3:
+  //       this.PersonalImage = event.target.files[0];
+  //       reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.PersonalImageLogo = reader.result as string;
+  //     };
+  //       break;
+  //       default:
+  //         alert('nothing selected')
+  //         break;
+  //     }
       
-    }
-  }
+  //   }
+  // }
   appendData(){
     this.StudentFormData = new FormData();
     this.StudentFormData.append('FirstName', this.StudentForm.value.FirstName);
     this.StudentFormData.append('SecondName', this.StudentForm.value.SecondName);
     this.StudentFormData.append('ThirdName', this.StudentForm.value.ThirdName);
     this.StudentFormData.append('FourthName', this.StudentForm.value.FourthName);
-    this.StudentFormData.append('BirthLocation', this.StudentForm.value.BirthLocation);
-    this.StudentFormData.append('DOB', this.StudentForm.value.DOB);
-    this.StudentFormData.append('JobDescription', this.StudentForm.value.JobDescription);
-    this.StudentFormData.append('StudentType', this.StudentForm.value.StudentType);
-    this.StudentFormData.append('NationalId', this.StudentForm.value.NationalId);
-    this.StudentFormData.append('GradDate', this.StudentForm.value.GradDate);
-    this.StudentFormData.append('GradeType', this.StudentForm.value.GradeType);
+    this.StudentFormData.append('PhoneNumber', this.StudentForm.value.PhoneNumber);
+    this.StudentFormData.append('SecondPhoneNumber', this.StudentForm.value.SecondphoneNumber);
+    this.StudentFormData.append('LocationDetails', this.StudentForm.value.LocationDetails);
     this.StudentFormData.append('CountryId', this.StudentForm.value.CountryId);
     this.StudentFormData.append('ReligionId', this.StudentForm.value.ReligionId);
-    this.StudentFormData.append('PersonalImage', this.PersonalImage);
-    this.StudentFormData.append('GradeImage', this.GradeImage);
-    this.StudentFormData.append('BirthImage', this.BirthImage);
+    this.StudentFormData.append('StudentType', this.StudentForm.value.StudentType);
   }
   onSubmit(){
     this.button = true;
