@@ -33,24 +33,22 @@ person:FormGroup ;
 
   onSubmit(){
     this._LoginService.user_login(this.person.value).subscribe((res) => {
-          console.log(res);
-          Swal.fire({
-            icon: "success",
-            title: "Signed in successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          localStorage.setItem('Authorization',res.data["token"]);
-          this._Router.navigate(["/content/admin/ViewStudents"]);
-    },(err) =>{
-    console.log("their is an error");
-    Swal.fire({
-      icon: 'error',
-      title: 'failed to sign in',
-      text:err.error.message    
-    })
-    }, () =>{
-      // console.log("completed");
-    });
-  }
+      if(res.data != null){
+        Swal.fire({
+          icon: "success",
+          title: "Signed in successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        localStorage.setItem('Authorization',res.data["token"]);
+        this._Router.navigate(["/content/admin/ViewStudents"]);
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'failed to sign in',
+          text:res.message    
+        })
+      }
+  })
+}
 }
