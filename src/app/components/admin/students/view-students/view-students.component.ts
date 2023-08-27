@@ -72,7 +72,7 @@ studentsType:object [] = [
     this._StudentService.Data.next(data);
   }
   GetPaymentHistory(studentId:number){
-    this._Router.navigate([`/content/admin/ViewPaymentHistory/${studentId}`]);
+    this._Router.navigate([`/content/admin/ViewStudentActivations/${studentId}`]);
   }
 async insertStudentSubCourse(data:any){
  switch(data.studentType){

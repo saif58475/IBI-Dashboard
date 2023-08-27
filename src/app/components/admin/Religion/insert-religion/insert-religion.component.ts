@@ -21,7 +21,8 @@ recordtoupdate:any;
   ngOnInit(): void {
     this._ReligionService.Data.subscribe((res) => {
       if( res == null){
-        this._Router.navigate(['content/admin/ViewReligion']);
+       this._Router.navigate(['content/admin/ViewReligion']);
+       //this.initiate();
       }else{
         this.update = true;
         this.recordtoupdate = res;
@@ -72,6 +73,7 @@ recordtoupdate:any;
              this.button = false;
     } 
   }
+
   ngOnDestroy(){
     this._ReligionService.Data.next(null);
      }

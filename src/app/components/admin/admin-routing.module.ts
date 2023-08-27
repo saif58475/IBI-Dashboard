@@ -22,6 +22,8 @@ import { InsertContentlevelComponent } from "./ContentLevel/insert-contentlevel/
 import { InsertStudentsubcourseIBIStudentComponent } from "./studentsubcourses/insert-studentsubcourse-ibistudent/insert-studentsubcourse-ibistudent.component";
 import { InsertStudentsubcourseStudentComponent } from "./studentsubcourses/insert-studentsubcourse-student/insert-studentsubcourse-student.component";
 import { ViewStudentPaymenthistoryComponent } from "./paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component";
+import { InsertStudentPaymenthistoryComponent } from "./paymentHistory/insert-student-paymenthistory/insert-student-paymenthistory.component";
+import { ViewStudentActivationsComponent } from "./studentActivations/view-student-activations/view-student-activations.component";
 
 
 
@@ -108,8 +110,20 @@ const routes: Routes = [
                 component: InsertStudentsubcourseStudentComponent
             },
             {
-                path: "ViewPaymentHistory/:studentId",
+                path: "ViewPaymentHistory/:studentId/:studentsubcourseId",
                 component: ViewStudentPaymenthistoryComponent
+            },
+            {
+                path: "InsertPaymentHistory/:studentId/:studentsubcourseId/:paymentNumber",
+                component: InsertStudentPaymenthistoryComponent
+            },
+            {
+                path: "InsertPaymentHistory",
+                component: InsertStudentPaymenthistoryComponent
+            },
+            {
+                path: "ViewStudentActivations/:studentId",
+                component: ViewStudentActivationsComponent
             },
 ],
     },

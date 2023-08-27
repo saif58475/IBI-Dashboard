@@ -47,6 +47,7 @@ import { InsertStudentcoursesComponent } from './studentsubcourses/insert-studen
 import { InsertStudentsubcourseStudentComponent } from './studentsubcourses/insert-studentsubcourse-student/insert-studentsubcourse-student.component';
 import { ViewStudentPaymenthistoryComponent } from './paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component';
 import { InsertStudentPaymenthistoryComponent } from './paymentHistory/insert-student-paymenthistory/insert-student-paymenthistory.component';
+import { ViewStudentActivationsComponent } from './studentActivations/view-student-activations/view-student-activations.component';
 
 
 
@@ -73,6 +74,7 @@ import { InsertStudentPaymenthistoryComponent } from './paymentHistory/insert-st
     InsertStudentsubcourseStudentComponent,
     ViewStudentPaymenthistoryComponent,
     InsertStudentPaymenthistoryComponent,
+    ViewStudentActivationsComponent,
     
   ],
   imports: [

@@ -1,1 +1,59 @@
-<p>insert-student-paymenthistory works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">دولة جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "PaymentHistoryForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Country Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> قيمة القسط الجديد</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="installmentAmount"
+                                [tooltip]="fc.installmentAmount.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.installmentAmount.valid && (fc.installmentAmount.touched)"
+                                [class.is-invalid]="fc.installmentAmount.invalid && (fc.installmentAmount.touched)"
+                                     required
+                                     placeholder="قيمة القسط الجديد"/>
+                            </div>
+                            <!-- Country Code  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اجمالي المدفوع بعد هذا القسط</label>
+                                <input class="form-control" id="validation01" [disabled]="true" type="text" formControlName="totalPaidAmountCurrently"
+                                [tooltip]="fc.totalPaidAmountCurrently.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.totalPaidAmountCurrently.valid && (fc.totalPaidAmountCurrently.touched)"
+                                [class.is-invalid]="fc.totalPaidAmountCurrently.invalid && (fc.totalPaidAmountCurrently.touched)"
+                                     required
+                                     placeholder="اجمالي المدفوع بعد هذا القسط"/>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

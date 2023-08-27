@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header"> 
+            <h2>الطالب مشترك في هذه الكورسات</h2>
+          </div>
+          <div class="card-body row">
+            
+            <div class="col-md-4 col-sm-6" *ngFor="let view of ActivatedCourses">
+              <div class="pricingtable">
+                <div class="pricingtable-header">
+                  <h3 class="title">{{ view.subcourse.course.name }}</h3>
+                </div>
+                <div class="price-value">
+                    <span>{{ view.subcourse.name}}</span>
+                </div>
+                <ul class="pricing-content" *ngIf="view.subcourse.group != 0">
+                  <li>مجموعة</li>
+                </ul>
+                <div class="pricingtable-signup">
+                    <a class="btn btn-primary btn-lg" (click)="GoToPayments(view)">الحسابات</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

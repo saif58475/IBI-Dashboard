@@ -12,6 +12,9 @@ import { DatePipe } from '@angular/common';
 })
 export class ViewStudentPaymenthistoryComponent implements OnInit {
   paymenthistory:any [];
+  studentId: number;
+  studentsubcourseId:number;
+  maxValue:number;
   constructor( private _Router:Router
              , private _ActivatedRoute:ActivatedRoute
              , private _PaymenthistoryService:PaymenthistoryService) { }
@@ -22,21 +25,35 @@ export class ViewStudentPaymenthistoryComponent implements OnInit {
 
   GetPaymentHistory(){
   this._ActivatedRoute.params.subscribe((params) => {
-    this._PaymenthistoryService.GetFilterContentLevel(Number(params["studentId"])).subscribe((res) => {
+    this.studentId = Number(params["studentId"]);
+    this.studentsubcourseId = Number(params["studentsubcourseId"]);
+    this._PaymenthistoryService.GetFilterContentLevel(Number(params["studentId"]),Number(params["studentsubcourseId"])).subscribe((res) => {
       this.paymenthistory = res.data;
-      // if( this.paymenthistory == null){
-      //   Swal.fire({
-      //     title: 'لا يوجد تاريخ اقساط سابقة لهذا الطالب',
-      //     icon: 'warning',
-      //     showCancelButton: true,
-      //     confirmButtonColor: '#3085d6',
-      //     cancelButtonText:'رجوع'
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //      this._Router.navigate(['content/admin/ViewStudents']);
-      // }})}
+      if( this.paymenthistory.length == 0){
+        Swal.fire({
+          title: 'لا يوجد تاريخ اقساط سابقة لهذا الطالب',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          confirmButtonText:'رجوع',
+          cancelButtonText:'تسجيل قسط'
+        }).then((result) => {
+          if (result.isConfirmed) {
+           this._Router.navigate(['content/admin/ViewStudents']);
+      }})}
     }) 
-      })}
+      })
+    }
+
+    new_Payment(){
+      this._Router.navigate([`/content/admin/InsertPaymentHistory/${this.studentId}/${this.studentsubcourseId}/${this.paymenthistory.length}`]);
+    }
+    Update(data:any){
+      this._PaymenthistoryService.GetById(data.id).subscribe((res) => {
+        this._PaymenthistoryService.DataUpdate.next(res.data);
+      })
+      this._Router.navigate(["/content/admin/InsertPaymentHistory"]);
+    }
   }
 
 

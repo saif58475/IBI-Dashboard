@@ -8,14 +8,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class PaymenthistoryService {
 
-  public Data = new BehaviorSubject(null);
+  public DataPaymentHistory = new BehaviorSubject(null);
+  public DataUpdate = new BehaviorSubject(null);
   constructor(private _HttpClient:HttpClient) { }
 
-  GetFilterContentLevel(studentId:number):Observable<any>{
-    return this._HttpClient.get(`${environment.Server_URL}/PaymentHistory/GetPaymentHistoryForStudentInSubCourse?studentId=${studentId}`);
+  GetFilterContentLevel(studentId:number , studentSubCourseId:number):Observable<any>{
+    return this._HttpClient.get(`${environment.Server_URL}/PaymentHistory/GetPaymentHistoryForStudentInSubCourse?studentId=${studentId}&studentSubCourseId=${studentSubCourseId}`);
    }
   Create(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/PaymentHistory/Create`, data);
+   }
+   GetById(id:number):Observable<any>{
+    return this._HttpClient.get(`${environment.Server_URL}/PaymentHistory/GetById?id=${id}`);
    }
   Update(data:object):Observable<any>{
     return this._HttpClient.put(`${environment.Server_URL}/PaymentHistory/Update`, data);
