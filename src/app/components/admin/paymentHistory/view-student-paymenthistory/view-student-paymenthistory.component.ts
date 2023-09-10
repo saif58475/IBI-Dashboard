@@ -15,7 +15,10 @@ export class ViewStudentPaymenthistoryComponent implements OnInit {
   studentId: number;
   studentsubcourseId:number;
   maxValue:number;
+  TotalPaidInstallments:number;
+  RemainingAmount:number;
   constructor( private _Router:Router
+             , private _DatePipe:DatePipe
              , private _ActivatedRoute:ActivatedRoute
              , private _PaymenthistoryService:PaymenthistoryService) { }
 
@@ -29,6 +32,9 @@ export class ViewStudentPaymenthistoryComponent implements OnInit {
     this.studentsubcourseId = Number(params["studentsubcourseId"]);
     this._PaymenthistoryService.GetFilterContentLevel(Number(params["studentId"]),Number(params["studentsubcourseId"])).subscribe((res) => {
       this.paymenthistory = res.data;
+      this.paymenthistory.forEach(element => {
+          element.paymentTime = this._DatePipe.transform(element.paymentTime, 'yyyy-MM-dd');  
+      });
       if( this.paymenthistory.length == 0){
         Swal.fire({
           title: 'لا يوجد تاريخ اقساط سابقة لهذا الطالب',
@@ -41,12 +47,28 @@ export class ViewStudentPaymenthistoryComponent implements OnInit {
           if (result.isConfirmed) {
            this._Router.navigate(['content/admin/ViewStudents']);
       }})}
+      else{
+        this._PaymenthistoryService.GetTotalPaidInstallment(Number(params["studentId"]), Number(params["studentsubcourseId"])).subscribe((res) => {
+          this.TotalPaidInstallments = res.data['totalPaidAmount'];
+          this.RemainingAmount = this.paymenthistory[0]['totalPrice'] - this.TotalPaidInstallments;
+          if( this.RemainingAmount <= 0 ){
+            Swal.fire({
+              icon: "warning",
+              title: "قد اتم دفع ثمن الكورس بالكامل و لا يوجد اقساط",
+              showConfirmButton: false,
+              timer: 4000,
+            }); 
+       this._Router.navigate([`/content/admin/ViewStudentActivations/${this.studentId}`]);
+          }
+        })
+      }
     }) 
       })
     }
 
     new_Payment(){
       this._Router.navigate([`/content/admin/InsertPaymentHistory/${this.studentId}/${this.studentsubcourseId}/${this.paymenthistory.length}`]);
+      this._PaymenthistoryService.TotalPaidInstallment.next(this.TotalPaidInstallments);
     }
     Update(data:any){
       this._PaymenthistoryService.GetById(data.id).subscribe((res) => {

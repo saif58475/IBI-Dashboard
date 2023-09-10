@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">كورس جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "GroupCourseForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Group Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم الجروب</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="groupName"
+                                [tooltip]="fc.groupName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.groupName.valid && (fc.groupName.touched)"
+                                [class.is-invalid]="fc.groupName.invalid && (fc.groupName.touched)"
+                                     required
+                                     placeholder="اسم الجروب"/>
+                            </div>
+                            <!-- firstTeacher  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر المدرس الاول</label>
+                                <ng-select  [selectOnTab]="true" formControlName="firstTeacher"
+                                    class="form-control p-0" placeholder="اختر المدرس الاول"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of teachers" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>  
+                            <!-- secondTeacher  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر المدرس الثاني</label>
+                                <ng-select  [selectOnTab]="true" formControlName="secondTeacher"
+                                (change)="handleChange()"
+                                    class="form-control p-0" placeholder="اختر المدرس الثاني"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of teachers" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- reasonForSecondTeacher  -->
+                            <div class="col-6 mb-3" *ngIf="reasonFiled">
+                                <label for="validation01"><span class="validation-required">*</span> سبب وجود مدرس ثاني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="reasonForSecondTeacher"
+                                [class.is-valid]="fc.reasonForSecondTeacher.valid && (fc.reasonForSecondTeacher.touched)"
+                                [class.is-invalid]="fc.reasonForSecondTeacher.invalid && (fc.reasonForSecondTeacher.touched)"
+                                     placeholder="اسم الجروب"/>
+                            </div>  
+                            <!-- secondTeacher  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورس</label>
+                                <ng-select  [selectOnTab]="true" formControlName="subCourseId"
+                                    class="form-control p-0" placeholder="اختر الكورس"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of subCourses" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

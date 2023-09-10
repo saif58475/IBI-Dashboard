@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">مدرس جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "TeacherForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم المدرس</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="name"
+                                [tooltip]="fc.name.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.name.valid && (fc.name.touched)"
+                                [class.is-invalid]="fc.name.invalid && (fc.name.touched)"
+                                     required
+                                     placeholder="اسم المدرس"/>
+                            </div>
+                            
+                            <!-- phoneNumber  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> رقم الهاتف</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="phoneNumber"
+                                [tooltip]="fc.phoneNumber.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.phoneNumber.valid && (fc.phoneNumber.touched)"
+                                [class.is-invalid]="fc.phoneNumber.invalid && (fc.phoneNumber.touched)"
+                                     required
+                                     placeholder="رقم الهاتف"/>
+                            </div>
+                            
+                            <!-- paymentPerHour  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الاجر في الساعة</label>
+                                <input class="form-control" id="validation01" type="number" formControlName="paymentPerHour"
+                                [tooltip]="fc.paymentPerHour.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.paymentPerHour.valid && (fc.paymentPerHour.touched)"
+                                [class.is-invalid]="fc.paymentPerHour.invalid && (fc.paymentPerHour.touched)"
+                                     required
+                                     placeholder="الاجر في الساعة"/>
+                            </div>
+                            <!-- CountryId  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الجنسية</label>
+                                <ng-select  [selectOnTab]="true" formControlName="countryId"
+                                    class="form-control p-0" placeholder="اختر الجنسية"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of Country" [value]="item.id">{{item.countryName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- shift  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الشيفت</label>
+                                <ng-select  [selectOnTab]="true" formControlName="shift"
+                                    class="form-control p-0" placeholder="اختر الشيفت"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of Shifts" [value]="item.id">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>  
+                            <!-- subcourses  -->
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورسات</label>
+                                <ng-multiselect-dropdown
+                                [placeholder]="'اختر من الكورسات'"
+                                [settings]="dropdownSettings"
+                                [data]="subCourse"
+                                (onSelect)="getcontentLevel($event)"
+                                [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="subCourseSelected">
+                            </ng-multiselect-dropdown>
+                            </div>
+                            <!-- contentLevel  -->
+                            <div class="col-lg-6 col-sm-12 mb-3" id="content" *ngIf="contentDropDown">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الكورسات</label>
+                                <ng-multiselect-dropdown
+                                [placeholder]="'اختر من الكورسات'"
+                                [settings]="dropdownSettingsContentLevel"
+                                [data]="contentLevel"
+                                [(ngModel)]="contentLevelSelected"
+                                [ngModelOptions]="{standalone: true}">
+                            </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                        <!-- (change)="getcontentlevel($event)" -->
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

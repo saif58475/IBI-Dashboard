@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { CourseService } from '../../../../shared/API-Service/services/course.service';
 import { PaginationComponent } from './../../../../shared/components/pagination/pagination.component';
+import { Course } from './../../../../shared/Models/course';
 
 @Component({
   selector: 'app-view-course',
@@ -11,7 +12,7 @@ import { PaginationComponent } from './../../../../shared/components/pagination/
   styleUrls: ['./view-course.component.css']
 })
 export class ViewCourseComponent extends PaginationComponent implements OnInit {
-  courses:any[];
+  courses:Course [];
   constructor(private _CourseService:CourseService
              ,private _Router:Router) { super(); }
 

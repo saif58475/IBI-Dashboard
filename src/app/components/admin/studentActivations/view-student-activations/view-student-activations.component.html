@@ -15,8 +15,14 @@
                 <div class="price-value">
                     <span>{{ view.subcourse.name}}</span>
                 </div>
-                <ul class="pricing-content" *ngIf="view.subcourse.group != 0">
+                <ul class="pricing-content" *ngIf="view.group == true">
                   <li>مجموعة</li>
+                </ul>
+                <ul class="pricing-content" *ngIf="view.privateOne == true">
+                  <li>Private One</li>
+                </ul>
+                <ul class="pricing-content" *ngIf="view.privateTwo == true">
+                  <li>Private Two</li>
                 </ul>
                 <div class="pricingtable-signup">
                     <a class="btn btn-primary btn-lg" (click)="GoToPayments(view)">الحسابات</a>

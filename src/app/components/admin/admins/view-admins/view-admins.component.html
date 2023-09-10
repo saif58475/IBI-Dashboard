@@ -9,7 +9,7 @@
                            <span>Sub-address</span>
                         </div>
 
-                        <div class="col-6 header-titles">
+                        <div class="col-6 header-titles" *ngIf="admin">
                             <a routerLink="/content/admin/InsertAdmin" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
                                     <span class="m-2">اضافة مسؤول</span>
@@ -38,7 +38,7 @@
                                         <td class="p-2">{{view.firstName}}</td>
                                         <td class="p-2">{{view.secondName}}</td>
                                         <td class="p-2">{{view.email}}</td>
-                                        <td class="font-style chose">
+                                        <td class="font-style chose" *ngIf="admin">
                                             <!-- <ng-template #elseBlock>  -->
                                                 <button class="btn  pull-right"  style="color: red; padding: 7px"
                                                 (click)="delete(view.id)" >

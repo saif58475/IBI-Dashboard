@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { ContentlevelService } from '../../../../shared/API-Service/services/contentlevel.service';
 import { PaginationComponent } from './../../../../shared/components/pagination/pagination.component';
-
+import { Contentlevel } from './../../../../shared/Models/contentlevel';
 @Component({
   selector: 'app-view-contentlevel',
   templateUrl: './view-contentlevel.component.html',
@@ -12,7 +12,7 @@ import { PaginationComponent } from './../../../../shared/components/pagination/
 })
 export class ViewContentlevelComponent extends PaginationComponent implements OnInit {
 
-  contentlevel:any[];
+  contentlevel:Contentlevel [];
   filterstring:string;
   constructor( private _ContentlevelService:ContentlevelService
              , private _Router:Router
@@ -39,6 +39,9 @@ export class ViewContentlevelComponent extends PaginationComponent implements On
       this.contentlevel = res.data;
       this.totalCount = res.totalCount;
     })
+  }
+  attachbook(contentlevelId:number){
+  this._Router.navigate([`content/admin/InsertBook/${contentlevelId}`]);
   }
   Update(data) {
     this._Router.navigate([`/content/admin/InsertContentLevel`]);

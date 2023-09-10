@@ -46,7 +46,7 @@ button:boolean = false;
         ibiStudentDocumentPrice: [data?.ibiStudentDocumentPrice || ''],
         registrationFilePrice: [data?.registrationFilePrice || ''],
         deposit: [data?.deposit || '', Validators.required],
-        totalPrice: [data?.totalPrice || '', Validators.required],
+        totalPrice: [data?.totalPrice || ''],
       });
     })
     this.getDropDowns();
@@ -68,9 +68,17 @@ button:boolean = false;
   this.IBIStudentSubCourseForm.value.subCourseId = event.id;
    }
    
+   CalcTheTotalPrice(){
+    this.IBIStudentSubCourseForm.value.totalPrice =
+     this.IBIStudentSubCourseForm.value.subCoursePrice + 
+     this.IBIStudentSubCourseForm.value.ibiStudentDocumentPrice +
+     this.IBIStudentSubCourseForm.value.registrationFilePrice +
+     this.IBIStudentSubCourseForm.value.deposit;
+   }
    onSubmit(){
     this.button = true;
     if(this.IBIStudentSubCourseForm.status == "VALID" && this.update == false){
+      this.CalcTheTotalPrice();
      this._StudentSubCourseService.Create(this.IBIStudentSubCourseForm.value).subscribe((res) => {
       Swal.fire({
         icon: "success",

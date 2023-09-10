@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { CountryService } from '../../../../shared/API-Service/services/country.service';
 import { PaginationComponent } from './../../../../shared/components/pagination/pagination.component';
+import { Country } from './../../../../shared/Models/country';
 
 @Component({
   selector: 'app-view-country',
@@ -11,9 +12,9 @@ import { PaginationComponent } from './../../../../shared/components/pagination/
   styleUrls: ['./view-country.component.css']
 })
 export class ViewCountryComponent extends PaginationComponent implements OnInit {
-  countries:any[];
-  constructor(private _CountryService:CountryService
-             ,private _Router:Router) { super(); }
+  countries:Country [];
+  constructor( private _CountryService:CountryService
+             , private _Router:Router) { super(); }
 
   ngOnInit(): void {
     this.getcountries();

@@ -8,7 +8,6 @@
                             <h5 class="pb-2"> اقساط خاصة بهذا الطالب</h5>
                            <span>Sub-address</span>
                         </div>
-
                         <div class="col-6 header-titles">
                             <a (click)="new_Payment()" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
@@ -18,7 +17,33 @@
                             </a>
                         </div>
                     </div>
+                </div><br><br>
+                <div class="row">
+                <div class="col-3 xl-50  chart_data_right box-col-12">
+                    <div class="card">
+                        <div class="card-body rounded-pill" style="background-color: rgba(171, 156, 22, 0.667);">
+                            <div class="media align-items-center" >
+                                <div class="media-body right-chart-content">
+                                    <h4>{{RemainingAmount}} جنية<span class="new-box">Remaining</span></h4><span>قيمة الاقساط المتبقية</span>
+                                </div>
+                                <div id="knob"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-3 xl-50  chart_data_right second d-none">
+                    <div class="card">
+                        <div class="card-body rounded-pill" style="background-color: rgba(58, 78, 109, 0.667);">
+                            <div class="media align-items-center">
+                                <div class="media-body right-chart-content">
+                                    <h4>{{TotalPaidInstallments}} جنية<span class="new-box">Paid</span></h4><span>قيمة الاقساط المدفوعة</span>
+                                </div>
+                                <div id="knob-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <div class="card-block row">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
                         <div class="table-responsive">
@@ -31,6 +56,7 @@
                                         <th scope="col"> اجمالي المدفوع حاليا</th>
                                         <th scope="col"> المقدم</th>
                                         <th scope="col"> اجمالي المبلغ المطلوب</th>
+                                        <th scope="col"> تاريخ الدفع</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -42,6 +68,7 @@
                                         <td class="p-2">{{view.totalPaidAmountCurrently}}</td>
                                         <td class="p-2">{{view.deposit}}</td>
                                         <td class="p-2">{{view.totalPrice}}</td>
+                                        <td class="p-2">{{view.paymentTime}}</td>
                                         <td class="font-style chose">
                                             <!-- <ng-template #elseBlock>  -->
                                                 <!-- <button class="btn  pull-right"  style="color: red; padding: 7px"

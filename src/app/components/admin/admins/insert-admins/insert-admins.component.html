@@ -47,14 +47,22 @@
                             <!-- password -->
                             <div class="col-6 mb-3">
                                 <label for="validation01"><span class="validation-required">*</span> كلمة المرور</label>
-                                <input class="form-control" id="validation01" type="text" formControlName="Password"
+                                <input class="form-control" id="validation01" type="password" formControlName="Password"
                                 [tooltip]="fc.Password.errors?.required ? 'الحقل مطلوب' : null"
                                 [class.is-valid]="fc.Password.valid && (fc.Password.touched)"
                                 [class.is-invalid]="fc.Password.invalid && (fc.Password.touched)"
                                      required
                                      placeholder="كلمة المرور"/>
                             </div>
-                            
+                             <!-- Sub Course Id  -->
+                             <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر نوع الادمن</label>
+                                <ng-select  [selectOnTab]="true"  formControlName="RoleId"
+                                    class="form-control p-0" placeholder="اختر نوع الادمن"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let option of AdminType" [value]="option.RoleId">{{ option.Name }}</ng-option>
+                                </ng-select>
+                            </div>
                         </div>
                         <br>
                         <ng-template #elseBlock>

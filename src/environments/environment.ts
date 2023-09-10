@@ -6,5 +6,5 @@ export const environment = {
   production: false
   
 };
-export const Server_URL='https://localhost:44363/api'
+export const Server_URL='https://localhost:44315/api'
 

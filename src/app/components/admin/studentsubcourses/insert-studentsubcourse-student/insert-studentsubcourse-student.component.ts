@@ -6,6 +6,7 @@ import { StudentSubCourseService } from './../../../../shared/API-Service/servic
 import { SubcourseService } from './../../../../shared/API-Service/services/subcourse.service';
 import { CourseService } from './../../../../shared/API-Service/services/course.service';
 import { StudentService } from './../../../../shared/API-Service/services/student.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-insert-studentsubcourse-student',
@@ -14,8 +15,10 @@ import { StudentService } from './../../../../shared/API-Service/services/studen
 })
 export class InsertStudentsubcourseStudentComponent implements OnInit {
 StudentSubCourseForm:FormGroup;
+TotalBookPrice:number;
 button:boolean = false;
 update:boolean = false;
+openCheckBox:boolean = false;
 courses:any;
 subcourses:any;
   constructor( private _StudentSubCourseService:StudentSubCourseService
@@ -29,6 +32,7 @@ subcourses:any;
   ngOnInit(): void {
     this.initiate();
   }
+  
   initiate(data?:any){
     this._ActivatedRoute.params.subscribe(params => {
       this.StudentSubCourseForm = this._FormBuilder.group({
@@ -38,19 +42,45 @@ subcourses:any;
         privateOne: [data?.group || false],
         privateTwo: [data?.group || false],
         bookAvailable: [data?.bookAvailable || false],
-        bookPrice: [data?.bookPrice || ''],
         ibiLevel: [data?.ibiLevel || false, Validators.required],
-        subCoursePrice: [data?.subCoursePrice || '', Validators.required],
         ibiStudentDocumentPrice: [data?.ibiStudentDocumentPrice || 0, Validators.required],
         registrationFilePrice: [data?.registrationFilePrice || 0, Validators.required],
         deposit: [data?.deposit || '', Validators.required],
-        totalPrice: [data?.totalPrice || '', Validators.required],
       });
     })
     this.getDropDowns();
   }
   get fc(){
     return this.StudentSubCourseForm.controls;
+  }
+  
+  SectionType(){
+    this._SubcourseService.GetById(this.StudentSubCourseForm.value.subCourseId).subscribe((res) => {
+    switch( this.StudentSubCourseForm.value.group || this.StudentSubCourseForm.value.privateOne || this.StudentSubCourseForm.value.privateTwo){
+      case this.StudentSubCourseForm.value.group == true:
+        this.StudentSubCourseForm.addControl('subCoursePrice', new FormControl(Number(res.data['groupAmount'])));
+           break; 
+    case this.StudentSubCourseForm.value.privateOne == true: 
+           this.StudentSubCourseForm.addControl('subCoursePrice', new FormControl(Number(res.data['privateOneAmount'])));
+           break;
+    case this.StudentSubCourseForm.value.privateTwo == true: 
+           this.StudentSubCourseForm.addControl('subCoursePrice', new FormControl(Number(res.data['privateTwoAmount'])));
+           break;
+    default:
+      alert('Select the section type');
+      break;
+    }
+  })
+  }
+ bookCheck(){
+      if(this.StudentSubCourseForm.value.bookAvailable == true){
+        this._SubcourseService.GetBookPrice(this.StudentSubCourseForm.value.subCourseId).subscribe((res:any) => {
+          this.StudentSubCourseForm.addControl('bookPrice', new FormControl(Number(res.data['totalBookPrice'])));
+      })
+    }
+  }
+  TotalPrice(){
+    this.StudentSubCourseForm.addControl('totalPrice' , new FormControl(this.StudentSubCourseForm.value.bookPrice + this.StudentSubCourseForm.value.subCoursePrice));
   }
   getDropDowns(){
     this._CourseService.Get().subscribe((res) => {
@@ -64,11 +94,12 @@ subcourses:any;
       }
       onSelectSubCourse(event){
      this.StudentSubCourseForm.value.subCourseId = event.id;
+      this.openCheckBox = true;
       }
-
-      onSubmit(){
+     onSubmit(){
         this.button = true;
         if(this.StudentSubCourseForm.status == "VALID" && this.update == false){
+          this.TotalPrice();
          this._StudentSubCourseService.Create(this.StudentSubCourseForm.value).subscribe((res) => {
           Swal.fire({
             icon: "success",
@@ -83,7 +114,7 @@ subcourses:any;
                 Swal.fire({
                   icon: 'error',
                   title: 'خطأ',
-                  text: 'لم تقم بتغيير اي شئ',
+                  text: 'تأكد من ملئ جميع الخانات',
                 });
                 this.button = false;
           })

@@ -13,7 +13,7 @@ export class InsertStudentPaymenthistoryComponent implements OnInit {
   PaymentHistoryForm:FormGroup;
   update:boolean = false;
   button:boolean = false;
-  totalPaidAmountCurrently:number;
+  totalPaidAmountCurrently:number = 0;
   studentId:number;
   studentsubcourseId:number;
   paymentNumber:number;
@@ -29,6 +29,9 @@ export class InsertStudentPaymenthistoryComponent implements OnInit {
         this.paymentNumber = Number(params['paymentNumber']) + 1;
         this.studentId = Number(params['studentId']);
         this.studentsubcourseId = Number(params['studentsubcourseId']);
+        this._PaymenthistoryService.GetTotalPaidInstallment(this.studentId, this.studentsubcourseId).subscribe((res) => {
+          this.totalPaidAmountCurrently = res.data['totalPaidAmount'];
+        })
         this.initiate();
       }
       else{
@@ -45,20 +48,39 @@ export class InsertStudentPaymenthistoryComponent implements OnInit {
     this.PaymentHistoryForm = this._FormBuilder.group({
       paymentNumber: [data?.paymentNumber || this.paymentNumber, Validators.required],
       installmentAmount: [data?.installmentAmount || '', Validators.required],
-      totalPaidAmountCurrently: [data?.totalPaidAmountCurrently || '', Validators.required],
+      totalPaidAmountCurrently: [data?.totalPaidAmountCurrently || ''],
       studentId: [data?.studentId || this.studentId, Validators.required],
-      studentsubcoursesId: [data?.studentsubcoursesId || this.studentsubcourseId, Validators.required]
+      studentsubcoursesId: [data?.studentsubcoursesId || this.studentsubcourseId, Validators.required],
+      paymentTime: [new Date()]
     });  
   }
 
   get fc(){
     return this.PaymentHistoryForm.controls;
   }
-
-  onSubmit(){
+ Get_Total_paid(){
+      this._PaymenthistoryService.GetTotalPaidInstallment(this.studentId,this.studentsubcourseId).subscribe((res) => {
+        this.PaymentHistoryForm.addControl('totalPaidAmountCurrently', new FormControl(res.data['totalPaidAmount'] + this.PaymentHistoryForm.value.installmentAmount));
+      })
+ }
+  onSubmit(){ 
     this.button = true;
-    if( this.PaymentHistoryForm.status == "VALID" && this.update == false){
-      this._PaymenthistoryService.Create(this.PaymentHistoryForm.value).subscribe((res) => {
+     if( this.PaymentHistoryForm.status == "VALID" && this.update == false){
+      // ==========================================================================
+      // this will calculate the Total Paid Amount after adding the new installment 
+    this.PaymentHistoryForm.value.totalPaidAmountCurrently = this.totalPaidAmountCurrently + Number(this.PaymentHistoryForm.value.installmentAmount);
+    // =============================================================================
+       Swal.fire({
+         title: 'بالرجاء التأكد من قيمة القسط المكتوب',
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'مظبوط',
+         cancelButtonText:"تعديل"
+             }).then((result) => {
+             if (result.isConfirmed) {
+               this._PaymenthistoryService.Create(this.PaymentHistoryForm.value).subscribe((res) => {
         Swal.fire({
          icon: "success",
          title: "تم تسجيل القسط بنجاح",
@@ -76,6 +98,11 @@ export class InsertStudentPaymenthistoryComponent implements OnInit {
              });
              this.button = false;
        })
+             }else{
+              this.button = false;
+             }
+         })
+      
     }else if(this.PaymentHistoryForm.status == "VALID" && this.update == true){
       this.PaymentHistoryForm.addControl('id', new FormControl(this.recordtoupdate.id));
       this._PaymenthistoryService.Update(this.PaymentHistoryForm.value).subscribe((res) => {

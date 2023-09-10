@@ -14,9 +14,13 @@ AdminForm:FormGroup;
 update:boolean = false;
 button:boolean = false;
 recordtoupdate:any;
-  constructor(private _AdminService:AdminService
-             ,private _Router:Router
-             ,private _FormBuilder:FormBuilder) { }
+AdminType:Object [] = [
+  { RoleId:0 , Name:'Normal Admin'},
+  { RoleId:1 , Name: 'Master Admin'}
+];
+  constructor( private _AdminService:AdminService
+             , private _FormBuilder:FormBuilder
+             , private _Router:Router) { }
 
   ngOnInit(): void {
     this._AdminService.Data.subscribe((res) => {
@@ -35,7 +39,7 @@ recordtoupdate:any;
       SecondName: [data?.secondName || '', Validators.required],
       Email: [data?.email || '', Validators.required],
       Password: [data?.password || '', Validators.required],
-      RoleId: [data?.roleId || 1, Validators.required]
+      RoleId: [data?.roleId || '', Validators.required]
     });
   }
   get fc(){

@@ -48,6 +48,10 @@
                                         <td class="p-2">{{view.subcourse.course.name}}</td>
                                         <td class="p-2">{{view.subcourse.course.code}}</td>
                                         <td class="font-style chose">
+                                                 <button class="btn  pull-right"  style="color: rgb(161, 91, 34); padding: 7px"
+                                                (click)="attachbook(view.id)" >
+                                                <i class="fa fa-book"></i>
+                                                   </button> 
                                                  <button class="btn  pull-right"  style="color: red; padding: 7px"
                                                 (click)="delete(view.id)" >
                                                 <i class="fa fa-trash"></i>

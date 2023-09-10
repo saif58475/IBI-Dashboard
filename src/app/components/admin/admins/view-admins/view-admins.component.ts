@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { AdminService } from './../../../../shared/API-Service/services/admin.service';
-
+import { JwtHelperService } from 'angular-jwt';
+import { User } from './../../../../shared/Models/user';
 @Component({
   selector: 'app-view-admins',
   templateUrl: './view-admins.component.html',
   styleUrls: ['./view-admins.component.css']
 })
-export class ViewAdminsComponent implements OnInit {
-admins:any [];
 
-  constructor(private _AdminService:AdminService
-             ,private _Router:Router) { }
+export class ViewAdminsComponent implements OnInit {
+admins:User [];
+admin:boolean = false;
+constructor( private _AdminService:AdminService
+           , private _Router:Router) { }
 
   ngOnInit(): void {
+  if( JSON.parse(window.atob(localStorage.getItem("Authorization").split('.')[1])).email == 1){
+    this.admin = true;
+  }
    this.getadmins();
   }
 

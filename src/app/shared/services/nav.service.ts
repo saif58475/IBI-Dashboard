@@ -138,6 +138,19 @@ export class NavService implements OnDestroy {
       ],
     },
     {
+      title: "المدرسين",
+      icon: "activity",
+      type: "sub",
+      badgeType: "success",
+      children: [
+        {
+          path: "admin/ViewTeacher",
+          title: "ادارة المدرسين",
+          type: "link",
+        },
+      ],
+    },
+    {
       title: "الكورسات",
       icon: "activity",
       type: "sub",
@@ -163,19 +176,19 @@ export class NavService implements OnDestroy {
         },
       ],
     },
-    // {
-    //   title: "محتوى الكورسات",
-    //   icon: "activity",
-    //   type: "sub",
-    //   badgeType: "success",
-    //   children: [
-    //     {
-    //       path: "admin/ViewContentLevel",
-    //       title: "ادارة محتوى الكورسات",
-    //       type: "link",
-    //     },
-    //   ],
-    // },
+    {
+      title: "المجموعات",
+      icon: "activity",
+      type: "sub",
+      badgeType: "success",
+      children: [
+        {
+          path: "admin/ViewGroupCourse",
+          title: "ادارة المجموعات",
+          type: "link",
+        },
+      ],
+    },
     {
       title: "المستخدمين",
       icon: "activity",

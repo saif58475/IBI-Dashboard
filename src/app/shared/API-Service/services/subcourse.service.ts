@@ -14,8 +14,14 @@ export class SubcourseService {
   Get():Observable<any>{
     return this._HttpClient.get(`${environment.Server_URL}/SubCourse/GetAll`);
    }
+  GetById(subcourseId:number):Observable<any>{
+    return this._HttpClient.get(`${environment.Server_URL}/SubCourse/GetById?id=${subcourseId}`);
+   }
   GetAllRecords(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/SubCourse/GetAllRecords`, data);
+   }
+   GetBookPrice(subcourseId:number){
+    return this._HttpClient.get(`${environment.Server_URL}/SubCourse/GetBookPrice?subcoursId=${subcourseId}`);
    }
   Create(data:object):Observable<any>{
     return this._HttpClient.post(`${environment.Server_URL}/SubCourse/Create`, data);

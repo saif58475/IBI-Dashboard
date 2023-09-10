@@ -24,6 +24,11 @@ import { InsertStudentsubcourseStudentComponent } from "./studentsubcourses/inse
 import { ViewStudentPaymenthistoryComponent } from "./paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component";
 import { InsertStudentPaymenthistoryComponent } from "./paymentHistory/insert-student-paymenthistory/insert-student-paymenthistory.component";
 import { ViewStudentActivationsComponent } from "./studentActivations/view-student-activations/view-student-activations.component";
+import { InsertBookComponent } from "./book/insert-book/insert-book.component";
+import { InsertTeachersComponent } from "./Teacher/insert-teachers/insert-teachers.component";
+import { ViewTeachersComponent } from "./Teacher/view-teachers/view-teachers.component";
+import { ViewGroupsComponent } from "./group/view-groups/view-groups.component";
+import { InsertGroupsComponent } from "./group/insert-groups/insert-groups.component";
 
 
 
@@ -124,6 +129,26 @@ const routes: Routes = [
             {
                 path: "ViewStudentActivations/:studentId",
                 component: ViewStudentActivationsComponent
+            },
+            {
+                path: "InsertBook/:contentlevelId",
+                component: InsertBookComponent
+            },
+            {
+                path: "ViewTeacher",
+                component: ViewTeachersComponent
+            },
+            {
+                path: "InsertTeacher",
+                component: InsertTeachersComponent
+            },
+            {
+                path: "ViewGroupCourse",
+                component: ViewGroupsComponent
+            },
+            {
+                path: "InsertGroupCourse",
+                component: InsertGroupsComponent
             },
 ],
     },

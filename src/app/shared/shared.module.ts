@@ -1,5 +1,5 @@
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
- 
+ // Modules
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
@@ -54,7 +54,6 @@ import { CheckDateComponent } from './components/check-date/check-date.component
 
 @NgModule({
   declarations: [
- 
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
@@ -79,11 +78,9 @@ import { CheckDateComponent } from './components/check-date/check-date.component
     OnlyDatesDirective,
     DisableWeritingEnglishDirective,
     DisableWeritingArabicDirective,
- 
     ExpPipe,
-
     LoginComponent,
-       CheckDateComponent,
+    CheckDateComponent,
 
   ],
   imports: [
@@ -97,7 +94,6 @@ import { CheckDateComponent } from './components/check-date/check-date.component
     DragulaModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TranslateModule,
-
     NgSelectModule,
     TooltipModule.forRoot(),
     PaginationModule.forRoot()

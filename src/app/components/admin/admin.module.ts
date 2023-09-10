@@ -48,6 +48,12 @@ import { InsertStudentsubcourseStudentComponent } from './studentsubcourses/inse
 import { ViewStudentPaymenthistoryComponent } from './paymentHistory/view-student-paymenthistory/view-student-paymenthistory.component';
 import { InsertStudentPaymenthistoryComponent } from './paymentHistory/insert-student-paymenthistory/insert-student-paymenthistory.component';
 import { ViewStudentActivationsComponent } from './studentActivations/view-student-activations/view-student-activations.component';
+import { ViewBookComponent } from './book/view-book/view-book.component';
+import { InsertBookComponent } from './book/insert-book/insert-book.component';
+import { ViewTeachersComponent } from './Teacher/view-teachers/view-teachers.component';
+import { InsertTeachersComponent } from './Teacher/insert-teachers/insert-teachers.component';
+import { ViewGroupsComponent } from './group/view-groups/view-groups.component';
+import { InsertGroupsComponent } from './group/insert-groups/insert-groups.component';
 
 
 
@@ -75,6 +81,12 @@ import { ViewStudentActivationsComponent } from './studentActivations/view-stude
     ViewStudentPaymenthistoryComponent,
     InsertStudentPaymenthistoryComponent,
     ViewStudentActivationsComponent,
+    ViewBookComponent,
+    InsertBookComponent,
+    ViewTeachersComponent,
+    InsertTeachersComponent,
+    ViewGroupsComponent,
+    InsertGroupsComponent,
     
   ],
   imports: [

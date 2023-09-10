@@ -5,14 +5,14 @@
                 <div class="card-header" style="padding-bottom: 5px !important">
                     <div class="row">
                         <div class="col-6">
-                            <h5 class="pb-2">Products</h5>
+                            <h5 class="pb-2">المدرسين</h5>
                            <span>Sub-address</span>
                         </div>
 
                         <div class="col-6 header-titles">
-                            <a routerLink="/content/admin/InsertProduct" class="d-block">
+                            <a routerLink="/content/admin/InsertTeacher" class="d-block">
                                 <button class="btn btn-primary pull-right" type="button">
-                                    <span class="m-2">Insert Product</span>
+                                    <span class="m-2">اضافة مدرس</span>
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </a>
@@ -26,35 +26,26 @@
                                 <thead>
                                     <tr class=" ">
                                         <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Product Category Title</th>
-                                        <th scope="col">Arabic Title</th>
-                                        
-                                        <th scope="col">image</th>
-                                      
+                                        <th scope="col">اسم المدرس</th>
+                                        <th scope="col">رقم الهاتف</th>
+                                        <th scope="col">الاجر في الساعه</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let product of products;let x = index" class=" ">
+                                    <tr *ngFor="let view of teachers;let x = index" class=" ">
                                         <td scope="row" class="p-2">{{x+1}}</td>
-                                        <td class="p-2">{{product.title}}</td>
-                                        <td class="p-2">{{product.productCategoryTitle}}</td>
-                                        <td class="p-2">{{product.titleAr}}</td>
-                                        <td class="p-2" style="height: 50px;width: 50px;">
-                                            <img [src]="img + product.image"  class="w-100 rounded-circle">
-
-                     
+                                        <td class="p-2">{{view.name}}</td>
+                                        <td class="p-2">{{view.phoneNumber}}</td>
+                                        <td class="p-2">{{view.paymentPerHour}}</td>
                                         <td class="font-style chose">
-                                            <!-- <ng-template #elseBlock>  -->
-                                                <button class="btn  pull-right"  style="color: red; padding: 7px"
-                                                (click)="delete(product.id)" >
+                                                 <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                (click)="delete(view.id)" >
                                                 <i class="fa fa-trash"></i>
-                                                   </button>
-                                            
+                                                   </button> 
                                             <button class="btn pull-right"
                                                 style="color: rgba(35, 118, 241, 0.667); padding: 7px"
-                                                (click)="Update(product)">
+                                                (click)="Update(view)">
                                                 <i class="fa fa-pencil"></i>
                                             </button>
                                         </td>
@@ -65,6 +56,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row justify-content-center w-100">
+        <div class='d-flex justify-content-center w-50 py-3'>
+          <pagination [boundaryLinks]="true" [totalItems]="totalCount" [itemsPerPage]="pager.pageSize"
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" 
+           (pageChanged)="pageChanged($event)">
+          </pagination>
         </div>
     </div>
 </div>
