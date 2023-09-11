@@ -54,6 +54,7 @@ import { ViewTeachersComponent } from './Teacher/view-teachers/view-teachers.com
 import { InsertTeachersComponent } from './Teacher/insert-teachers/insert-teachers.component';
 import { ViewGroupsComponent } from './group/view-groups/view-groups.component';
 import { InsertGroupsComponent } from './group/insert-groups/insert-groups.component';
+import { InsertStudentGradesComponent } from './studentGrades/insert-student-grades/insert-student-grades.component';
 
 
 
@@ -87,6 +88,7 @@ import { InsertGroupsComponent } from './group/insert-groups/insert-groups.compo
     InsertTeachersComponent,
     ViewGroupsComponent,
     InsertGroupsComponent,
+    InsertStudentGradesComponent,
     
   ],
   imports: [

@@ -29,6 +29,7 @@ import { InsertTeachersComponent } from "./Teacher/insert-teachers/insert-teache
 import { ViewTeachersComponent } from "./Teacher/view-teachers/view-teachers.component";
 import { ViewGroupsComponent } from "./group/view-groups/view-groups.component";
 import { InsertGroupsComponent } from "./group/insert-groups/insert-groups.component";
+import { InsertStudentGradesComponent } from "./studentGrades/insert-student-grades/insert-student-grades.component";
 
 
 
@@ -149,6 +150,10 @@ const routes: Routes = [
             {
                 path: "InsertGroupCourse",
                 component: InsertGroupsComponent
+            },
+            {
+                path: "InsertStudentGrades/:studentId/:studentsubcourseId",
+                component: InsertStudentGradesComponent
             },
 ],
     },

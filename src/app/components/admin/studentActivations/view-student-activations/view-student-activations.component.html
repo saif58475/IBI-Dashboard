@@ -24,8 +24,13 @@
                 <ul class="pricing-content" *ngIf="view.privateTwo == true">
                   <li>Private Two</li>
                 </ul>
-                <div class="pricingtable-signup">
+                <div class="row">
+                  <div class="col-lg-6 pricingtable-signup">
                     <a class="btn btn-primary btn-lg" (click)="GoToPayments(view)">الحسابات</a>
+                </div>
+                <div class="col-lg-6 pricingtable-signup">
+                    <a class="btn btn-primary btn-lg" (click)="GoToGrades(view)">الدرجات</a>
+                </div>
                 </div>
               </div>
             </div>

@@ -27,6 +27,7 @@
                                     <tr class=" ">
                                         <th scope="col">#</th>
                                         <th scope="col">اسم المجموعة</th>
+                                        <th scope="col">فعالة</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -34,9 +35,13 @@
                                     <tr *ngFor="let view of GroupsCourse;let x = index" class=" ">
                                         <td scope="row" class="p-2">{{x+1}}</td>
                                         <td class="p-2">{{view.groupName}}</td>
+                                        <td class="p-2" [ngSwitch]="view.active">
+                                                <i class="fa fa-thumbs-up" style="color: rgb(64, 230, 144); padding: 7px" *ngSwitchCase="1"></i>
+                                                <i class="fa fa-thumbs-down" style="color: red; padding: 7px" *ngSwitchCase="0"></i>
+                                        </td>
                                         <td class="font-style chose">
                                                  <button class="btn  pull-right"  style="color: red; padding: 7px"
-                                                (click)="delete(view.id)" >
+                                                (click)="delete(view.id)">
                                                 <i class="fa fa-trash"></i>
                                                    </button> 
                                             <button class="btn pull-right"

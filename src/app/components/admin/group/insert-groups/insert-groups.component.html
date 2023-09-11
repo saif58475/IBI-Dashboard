@@ -62,6 +62,15 @@
                                     <ng-option *ngFor="let item of subCourses" [value]="item.id">{{item.name}}</ng-option>
                                 </ng-select>
                             </div>
+                            <!-- Active  -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر حالة المجموعة</label>
+                                <ng-select  [selectOnTab]="true" formControlName="active"
+                                    class="form-control p-0" placeholder="اختر حالة المجموعة"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of active" [value]="item.value">{{item.name}}</ng-option>
+                                </ng-select>
+                            </div>
                         </div>
                         <br>
                         <ng-template #elseBlock>

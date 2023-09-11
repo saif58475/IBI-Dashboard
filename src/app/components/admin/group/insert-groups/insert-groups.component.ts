@@ -20,6 +20,10 @@ update:boolean = false;
 button:boolean = false;
 reasonFiled:boolean = false;
 recordtoupdate:any;
+active:Object [] = [
+  { value:false , name:"غير فعالة"},
+  { value:true , name:"فعالة"}
+]
   constructor( private _SubcourseService:SubcourseService
              , private _TeachersService:TeachersService
              , private _GroupService:GroupService
@@ -28,7 +32,16 @@ recordtoupdate:any;
 
   ngOnInit(): void {
     this.DropDownsData();
-    this.initiate();
+    this._GroupService.Data.subscribe((res) => {
+      if( res != null){
+        this.recordtoupdate = res;
+      this.initiate(res);
+      this.update = true;
+      }
+      else{
+        this.initiate();
+      }
+    })
   }
   handleChange(){
     if(this.GroupCourseForm.value.secondTeacher != null){
@@ -41,7 +54,10 @@ recordtoupdate:any;
       firstTeacher: [data?.firstTeacher || '', Validators.required],
       secondTeacher: [data?.secondTeacher || ''],
       reasonForSecondTeacher: [data?.reasonForSecondTeacher || ''],
-      subCourseId: [data?.subCourseId || '', Validators.required]
+      active: [data?.active || '', Validators.required],
+      subCourseId: [data?.subCourseId || '', Validators.required],
+      StartDate: [data?.StartDate || null],
+      EndDate: [data?.Enddate || null]
     });
   }
   get fc(){
@@ -61,7 +77,7 @@ recordtoupdate:any;
       this._GroupService.Create(this.GroupCourseForm.value).subscribe((res) => {
         Swal.fire({
          icon: "success",
-         title: "تم تسجيل الكورس بنجاح",
+         title: "تم تسجيل المجموعة بنجاح",
          showConfirmButton: false,
          timer: 1500,
        }); 
@@ -81,7 +97,7 @@ recordtoupdate:any;
       this._GroupService.Update(this.GroupCourseForm.value).subscribe((res) => {
         Swal.fire({
          icon: "success",
-         title: "تم تعديل الكورس بنجاح",
+         title: "تم تعديل المجموعة بنجاح",
          showConfirmButton: false,
          timer: 1500,
        }); 

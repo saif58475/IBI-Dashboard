@@ -76,6 +76,7 @@ subcourses:any;
       if(this.StudentSubCourseForm.value.bookAvailable == true){
         this._SubcourseService.GetBookPrice(this.StudentSubCourseForm.value.subCourseId).subscribe((res:any) => {
           this.StudentSubCourseForm.addControl('bookPrice', new FormControl(Number(res.data['totalBookPrice'])));
+          debugger
       })
     }
   }

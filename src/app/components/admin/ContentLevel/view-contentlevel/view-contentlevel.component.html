@@ -31,10 +31,6 @@
                                         <th scope="col">#</th>
                                         <th scope="col">اسم المحتوى</th>
                                         <th scope="col">كود المحتوى</th>
-                                        <th scope="col">اسم تقسيمة الكورس</th>
-                                        <th scope="col">كود تقسيمة الكورس</th>
-                                        <th scope="col">اسم الكورس</th>
-                                        <th scope="col">كود الكورس</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -43,10 +39,6 @@
                                         <td scope="row" class="p-2">{{x+1}}</td>
                                         <td class="p-2">{{view.name}}</td>
                                         <td class="p-2">{{view.code}}</td>
-                                        <td class="p-2">{{view.subcourse.name}}</td>
-                                        <td class="p-2">{{view.subcourse.code}}</td>
-                                        <td class="p-2">{{view.subcourse.course.name}}</td>
-                                        <td class="p-2">{{view.subcourse.course.code}}</td>
                                         <td class="font-style chose">
                                                  <button class="btn  pull-right"  style="color: rgb(161, 91, 34); padding: 7px"
                                                 (click)="attachbook(view.id)" >

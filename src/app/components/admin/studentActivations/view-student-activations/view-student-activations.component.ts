@@ -36,5 +36,8 @@ ActivatedCourses:any [];
   GoToPayments(view:any){
      this._Router.navigate([`/content/admin/ViewPaymentHistory/${view.studentId}/${view.studentSubCourseId}`]);
   }
+  GoToGrades(view){
+    this._Router.navigate([`/content/admin/InsertStudentGrades/${view.studentId}/${view.studentSubCourseId}`]); 
+  }
 
 }

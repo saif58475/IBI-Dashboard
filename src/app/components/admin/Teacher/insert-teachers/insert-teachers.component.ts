@@ -28,12 +28,24 @@ subCourse:SubCourse [];
 subCourseSelected:number [];
 contentLevelSelected:number [];
 contentLevel:Contentlevel [] = [];
-dropdownSettingsContentLevel:IDropdownSettings;
-dropdownSettings:IDropdownSettings;
-
+dropdownSettings:IDropdownSettings  = {
+  idField: 'id',
+  textField: 'name',
+  enableCheckAll: true,
+  selectAllText: "اختيار جميع الكورسات",
+  unSelectAllText: "ازالة جميع الكورسات",
+};
+dropdownSettingsContentLevel:IDropdownSettings  = {
+  idField: 'id',
+  textField: 'name',
+  enableCheckAll: true,
+  selectAllText: "اختيار جميع المراحل",
+  unSelectAllText: "ازالة جميع المراحل",
+  noDataAvailablePlaceholderText: "يجب اختيار كورسات اولاً"
+};
 Shifts:Object [] = [
-  { id:0 , name:'مسائي'},
-  { id:1 , name:'صباحي'},
+  { id:1 , name:'مسائي'},
+  { id:2 , name:'صباحي'},
 ];
   constructor( private _TeachersService:TeachersService
              , private _CountryService:CountryService
@@ -43,25 +55,11 @@ Shifts:Object [] = [
              , private _Router:Router ) { }
 
   ngOnInit(): void {
-    this.dropdownSettings  = {
-      idField: 'id',
-      textField: 'name',
-      enableCheckAll: true,
-      selectAllText: "اختيار جميع الكورسات",
-      unSelectAllText: "ازالة جميع الكورسات",
-    };
-    this.dropdownSettingsContentLevel  = {
-      idField: 'id',
-      textField: 'name',
-      enableCheckAll: true,
-      selectAllText: "اختيار جميع المراحل",
-      unSelectAllText: "ازالة جميع المراحل",
-      noDataAvailablePlaceholderText: "يجب اختيار كورسات اولاً"
-    };
+    this.getCountry();
+    this.getsubCourses();
     this._TeachersService.Data.subscribe((res) => {
       if(res != null){
         this.recordtoupdate = res;
-        debugger
     this.updateLoop(res.id)
     this.update = true;
       }else{
@@ -80,8 +78,6 @@ Shifts:Object [] = [
       subCourses: [''],
       contentlevels: ['']
     });
-    this.getCountry();
-    this.getsubCourses();
   }
 
   getCountry(){
@@ -176,7 +172,7 @@ this.TeacherForm.value.contentlevels = this.contentLevelSelected;
              Swal.fire({
                icon: 'error',
                title: 'خطأ',
-               text: 'لم تقم بتغيير اي شئ',
+               text: 'حدث خطأ اثناء عملية التعديل',
              });
              this.button = false;
        })
